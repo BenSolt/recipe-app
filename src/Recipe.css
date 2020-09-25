@@ -1,0 +1,141 @@
+.Navbar{
+    font-size: 1.2rem;
+    text-align: center; 
+    background: gray;
+    padding-top: 15px;
+}
+
+
+
+.NavbarSearch{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+
+/* .Top{
+    display: flex; 
+    margin: 3%;
+    justify-content: space-evenly;
+} */
+
+.navlink{
+    margin: 1%;
+}
+ 
+
+.ReactFormholder{
+    text-align: center; 
+    padding-bottom: 2rem;
+    background: gray;
+}
+
+/* Search Bar */
+.Searchbar{
+
+    margin-bottom: 2%;
+}
+  
+.RecipeHolder{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1%;
+    justify-content: space-evenly;
+}
+
+.RecipeCard{
+    width: 300px;
+    text-align: center; 
+    margin: 1%;
+    border: 2px solid black;
+    background: rgb(184, 184, 184);
+    border-radius: 5px;
+}
+
+/* NEW TEST ///////////////////////////////////////////*/
+.RecipeCard2{
+    width: 300px;
+    text-align: center; 
+    margin: 1%;
+    border: 2px solid black;
+    background: rgb(255, 107, 107);
+    border-radius: 5px;
+}
+
+.FormEditRecipe{
+    width: 340px;
+    text-align: center; 
+    margin: 1%;
+    border: 2px solid black;
+    background: rgb(240, 2, 2);
+    border-radius: 5px;
+}
+
+/* FORM ////////////////////////////////////////////*/
+.FormHolder{
+    display: flex;
+    padding: 12px;
+    justify-content: space-evenly;
+}
+
+
+.Input{
+    padding: 12px;
+    /* margin: 0 5% 0 5%; */
+    border: 2px solid black;
+    font-size: 1.4rem;
+    border-radius: 5px;   
+}
+
+/* END FORM ////////////////////////////////////////////*/
+  
+.BtnDeleteRecipe{
+    padding: 12px;
+    margin: 10px;
+    background: rgb(255, 0, 0);
+    font-weight: bold;
+    font-size: 1.2rem;
+    border-radius: 5px;
+}
+
+/* Button add Recipe */
+.BtnAddRecipe{
+    padding: 12px;
+    margin-left: 25px;
+    background: rgb(30, 255, 0);
+    font-weight: bold;
+    font-size: 1.2rem;
+    border-radius: 5px;
+}
+
+.BtnEditRecipe{
+    padding: 12px;
+    margin-left: 25px;
+    background: rgb(0, 162, 255);
+    font-weight: bold;
+    font-size: 1.2rem;
+    border-radius: 5px;
+}
+
+/* SEARCH EXAMPLE PAGE */
+.SearchCard{
+    /* width: 45%; */
+    text-align: center; 
+    margin: 2%;
+    padding: 12px;
+    border: 2px solid black;
+    /* background: rgb(184, 184, 184); */
+}
+
+
+
+/* TODO APP */
+.App2{
+    margin: 2%;
+}
+
+.mainBox2{
+    text-align: center; 
+    border: 2px solid black;
+    margin: 0 12% 0% 12%;
+}

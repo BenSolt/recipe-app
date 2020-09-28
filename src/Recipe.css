@@ -25,7 +25,7 @@
     
 }
 
-/* Search Bar */
+/*/////////////////// Search Bar ////////////////////////////*/
 .Searchbar{
     margin-bottom: 2%;
 }
@@ -46,41 +46,70 @@
     border-radius: 5px;
 }
 
-/* NEW TEST ///////////////////////////////////////////*/
-.RecipeCard2{
-    width: 300px;
-    text-align: center; 
-    margin: 1%;
-    border: 2px solid black;
-    background: rgb(255, 107, 107);
-    border-radius: 5px;
-}
-
-.FormEditRecipe{
-    width: 340px;
-    text-align: center; 
-    margin: 1%;
-    border: 2px solid black;
-    background: rgb(240, 2, 2);
-    border-radius: 5px;
-}
-
-/* FORM ////////////////////////////////////////////*/
-
 
 .Input{
     padding: 12px;
     /* margin: 0 5% 0 5%; */
     border: 2px solid black;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
+    border-radius: 5px;   
+}
+
+.Input2{
+    padding: 12px;
+    margin: 0 0 0 4%;
+    border: 2px solid black;
+    font-size: 1.3rem;
     border-radius: 5px;   
 }
 
 /* END FORM ////////////////////////////////////////////*/
-  
-.BtnDeleteRecipe{
-    padding: 12px;
+
+/* EDIT RECIPE FORM /////////////////////////////////// */
+
+.EditFormHolder{
+    /* display: flex;
+    flex-wrap: wrap; */
+    justify-content: space-evenly;
+}
+
+.EditForm{
+    text-align: center; 
+    padding: 1rem;
+}
+
+.BtnEditSave{
+    width: 128px;
+    padding: 10px;
+    margin: 0 12px 0 0;
+    background: rgb(30, 255, 0);
+    font-weight: bold;
+    font-size: 1.2rem;
+    border-radius: 5px;
+}
+
+.BtnEditCancel{
+    width: 128px;
+    padding: 10px;
+    margin: 0 0 0 12px;
+    background: rgb(255, 0, 0);
+    font-weight: bold;
+    font-size: 1.2rem;
+    border-radius: 5px;
+}
+
+/* END EDIT FORM ////////////////////////////////////////////*/
+
+
+.BtnHolder{
+    display:flex;
     margin: 10px;
+    justify-content: space-evenly;
+}
+
+.BtnDeleteRecipe{
+    width: 128px;
+    padding: 10px;
     background: rgb(255, 0, 0);
     font-weight: bold;
     font-size: 1.2rem;
@@ -98,8 +127,9 @@
 }
 
 .BtnEditRecipe{
-    padding: 12px;
-    margin-left: 25px;
+    width: 128px;
+    padding: 10px;
+    /* margin: 5px; */
     background: rgb(0, 162, 255);
     font-weight: bold;
     font-size: 1.2rem;
@@ -108,7 +138,6 @@
 
 /* SEARCH EXAMPLE PAGE */
 .SearchCard{
-    /* width: 45%; */
     text-align: center; 
     margin: 2%;
     padding: 12px;

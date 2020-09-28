@@ -3,20 +3,20 @@ import axios from "axios";
 // import axiosWithAuth from '../utils/AxiosWithAuth';
 
 
-const initialColor = {
+const initialRecipe = {
   name: ""
 };
 
-const ColorList = ({ colors, updateColors }) => {
-  console.log(colors);
-  const [editing, setEditing] = useState(false);
-  const [colorToEdit, setColorToEdit] = useState(initialColor);
-  const [newColor, setNewColor]=useState({name: ""})
+const RecipeList = ({ recipes, updateRecipes }) => {
+  console.log(recipes);
+  const [editing, setEditing] = useState(false); 
+  const [recipeToEdit, setRecipeToEdit] = useState(initialRecipe);
+  const [newRecipe, setnewRecipe]=useState({name: ""})
 
   const [query, setQuery] = useState("");
 
 
-  const filteredRecipes = colors.filter(r => {
+  const filteredRecipes = recipes.filter(r => {
         return r.name.toLowerCase().indexOf(query.toLowerCase()) !== -1;
     });
 
@@ -32,9 +32,9 @@ const ColorList = ({ colors, updateColors }) => {
 // ////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
 
-  const editColor = color => {
+  const editRecipe = recip => {
     setEditing(true);
-    setColorToEdit(color);
+    setRecipeToEdit(recip);
   };
 
   const saveEdit = e => {
@@ -42,16 +42,15 @@ const ColorList = ({ colors, updateColors }) => {
 
     // axiosWithAuth()
     axios
-    // .put(`/api/colors/${colorToEdit.id}`, colorToEdit)
-    .put(`https://recipe-organizer-app.herokuapp.com/char/${colorToEdit.id}`, colorToEdit)
+    .put(`https://recipe-organizer-app.herokuapp.com/char/${recipeToEdit.id}`, recipeToEdit)
      .then(res => {  
-      updateColors(
+      updateRecipes(
         console.log('edit success?'),
-        colors.map(color => {
-          if (color.id === res.data.id) {
+        recipes.map(recip => {
+          if (recip.id === res.data.id) {
             return res.data
           }else {
-            return color;
+            return recip;
           }
         })
         
@@ -60,26 +59,26 @@ const ColorList = ({ colors, updateColors }) => {
     };
 
 
-  const deleteColor = color => {
+  const deleteRecipe = recip => {
     // axiosWithAuth()
     axios
-      .delete(`https://recipe-organizer-app.herokuapp.com/char/${color.id}`)
+      .delete(`https://recipe-organizer-app.herokuapp.com/char/${recip.id}`)
       .then(res => {
-      console.log(color, 'delete color')
-      updateColors(colors.filter(color => color.id !== res.data))
+      console.log(recip, 'delete recipe')
+      updateRecipes(recipes.filter(recip => recip.id !== res.data))
     })
       .catch(err => console.log(err, 'delete fail'));
 
   };
 
-  const addColor = e => {
+  const addRecipe = e => {
     e.preventDefault();
     // axiosWithAuth()
     axios
-      .post('https://recipe-organizer-app.herokuapp.com/char', newColor)
+      .post('https://recipe-organizer-app.herokuapp.com/char', newRecipe)
       .then(res => {
-        updateColors(res.data);
-        setNewColor({
+        updateRecipes(res.data);
+        setnewRecipe({
           name: ""
         });
       })
@@ -91,22 +90,22 @@ const ColorList = ({ colors, updateColors }) => {
   return (
     <div>
 
-    <form onSubmit={addColor} className='Formholder'>
+    <form onSubmit={addRecipe} className='Formholder'>
         <input
             className="Input"
             type="text"
             name="name"
             required
             placeholder="Enter Recipe"
-            value={newColor.name}
-            onChange={e => setNewColor({ ...newColor, name: e.target.value })}
+            value={newRecipe.name}
+            onChange={e => setnewRecipe({ ...newRecipe, name: e.target.value })}
         />
 
-        <button className="BtnAddRecipe" >enter</button>
+        <button className="BtnAddRecipe" >Add Recipe</button>
 
 {/* SERACH RECIPES */}
         <input 
-          className="Input"
+          className="Input2"
             type="text"
             value={query}
             onChange={handleFilterChange}
@@ -119,22 +118,22 @@ const ColorList = ({ colors, updateColors }) => {
 
 
     {editing && (
-        <form onSubmit={saveEdit}>
-          <legend>Edit Recipe</legend>
-          <label>
-            Recipe name:
-            <input
-                className="Input"
-                onChange={e =>
-                setColorToEdit({ ...colorToEdit, name: e.target.value })
-              }
-              value={colorToEdit.name}
-            />
-          </label>
+        <form className="EditFormHolder" onSubmit={saveEdit}>
+          <div className="EditForm">
+            <h2>Edit Recipe</h2>
+            <h2>
+              <input
+                  className="Input"
+                  placeholder="Recipe Name"
+                  onChange={e =>
+                  setRecipeToEdit({ ...recipeToEdit, name: e.target.value })
+                }
+                value={recipeToEdit.name}
+              />
+            </h2>
      
-          <div className="button-row">
-            <button className="BtnEditRecipe" type="submit">save</button>
-            <button className="BtnEditRecipe" onClick={() => setEditing(false)}>cancel</button>
+            <button className="BtnEditSave" type="submit">save</button>
+            <button className="BtnEditCancel" onClick={() => setEditing(false)}>cancel</button>
           </div>
         </form>
       )}
@@ -142,18 +141,20 @@ const ColorList = ({ colors, updateColors }) => {
     <div className='RecipeHolder'>
 
 
-    {filteredRecipes.map(color => (
+    {filteredRecipes.map(recip => (
         // {colors.map(color => (
-            <div className="RecipeCard" key={color.name} >
-                <h2>{color.name}</h2>
+            <div className="RecipeCard" key={recip.name} >
+                <h2>{recip.name}</h2>
+                <div className="BtnHolder">
                 <button className="BtnDeleteRecipe" onClick={e => {
                     e.stopPropagation();
-                    deleteColor(color)}}>
+                    deleteRecipe(recip)}}>
                     Delete Recipe
                 </button>
 
-                <button className="BtnEditRecipe" onClick={() => editColor(color)}>Edit Recipe</button>
-                
+                <button className="BtnEditRecipe" onClick={() => editRecipe(recip)}>Edit Recipe</button>
+                </div>
+
             </div>
         ))}
     </div>
@@ -163,4 +164,4 @@ const ColorList = ({ colors, updateColors }) => {
   );
 };
 
-export default ColorList;
+export default RecipeList;

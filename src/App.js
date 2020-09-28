@@ -5,7 +5,7 @@ import './Recipe.css';
 
 import Navbar from "./components/Navbar";
 import RecipePage from "./components/RecipePage";
-// import ColorList from "./components/ColorList";
+
 
 
 function App() {

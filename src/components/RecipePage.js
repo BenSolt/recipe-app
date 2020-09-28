@@ -7,7 +7,7 @@ import RecipeList from "./RecipeList";
 // import axiosWithAuth from '../utils/AxiosWithAuth';
 
 const BubblePage = () => {
-  const [colorList, setColorList] = useState([]);
+  const [recipeList, setRecipeList] = useState([]);
   const [query, setQuery] = useState("");
 
   useEffect(() => {
@@ -16,7 +16,7 @@ const BubblePage = () => {
     .get('https://recipe-organizer-app.herokuapp.com/char')
    
     .then(res => {
-        setColorList(res.data)
+        setRecipeList(res.data)
       // const info = res.data.filter(p =>
       //    p.toLowerCase().includes(query.toLowerCase()),
       //  );
@@ -31,7 +31,7 @@ const BubblePage = () => {
 //     setQuery(event.target.value);
 //   };
 
-// const filteredRecipes = colorList.filter(r => {
+// const filteredRecipes = recipeList.filter(r => {
 //     return r.name.toLowerCase().indexOf(query.toLowerCase()) !== -1;
 //   });
 
@@ -41,12 +41,10 @@ const BubblePage = () => {
     <div>
 
       <RecipeList 
-      colors={colorList} 
-      updateColors={setColorList}
+      recipes={recipeList} 
+      updateRecipes={setRecipeList}
       />
-      {/* <Bubbles colors={colorList} /> */}
 
-      
 
     </div>
   );

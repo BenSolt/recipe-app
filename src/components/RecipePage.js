@@ -2,30 +2,13 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 // import Bubbles from "./Bubbles";
-import ColorList from "./ColorList";
+import RecipeList from "./RecipeList";
 
 // import axiosWithAuth from '../utils/AxiosWithAuth';
 
 const BubblePage = () => {
   const [colorList, setColorList] = useState([]);
   const [query, setQuery] = useState("");
-
-  // fetch your colors data from the server when the component mounts
-  // set that data to the colorList state property
-
-
-//   useEffect(() => 
-//     axios
-//     .get (`/api/colors`)
-//     .then(res => {
-//       setColorList(res.data)
-       
-//       })
-//     .catch(err => {
-//         console.log(err)
-//     });
-//   },[])
-
 
   useEffect(() => {
     axios
@@ -41,28 +24,29 @@ const BubblePage = () => {
     .catch(err => {
       console.log(err)
     });
-// }, [query]);
+}, [query]);
+// },[]);
 
-});
-
-const handleFilterChange = event => {
-    setQuery(event.target.value);
-  };
+// const handleFilterChange = event => {
+//     setQuery(event.target.value);
+//   };
 
 // const filteredRecipes = colorList.filter(r => {
-//     return r.name.toLowerCase().indexOf(colorList.toLowerCase()) !== -1;
-//   });  
+//     return r.name.toLowerCase().indexOf(query.toLowerCase()) !== -1;
+//   });
+
+
 
   return (
-    <div className="RecipeHolder">
+    <div>
 
-      <ColorList 
+      <RecipeList 
       colors={colorList} 
       updateColors={setColorList}
-      handleFilterChange1={handleFilterChange}
-    //   filteredRecipes1={filteredRecipes}
       />
       {/* <Bubbles colors={colorList} /> */}
+
+      
 
     </div>
   );

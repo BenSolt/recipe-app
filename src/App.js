@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import './Recipe.css';
 
 import Navbar from "./components/Navbar";
-import BubblePage from "./components/BubblePage";
+import RecipePage from "./components/RecipePage";
 // import ColorList from "./components/ColorList";
 
 
@@ -12,10 +12,10 @@ function App() {
 
 
   return (
-    <main>
+    <main >
 
       <Navbar/>
-      <BubblePage/>
+      <RecipePage/>
 
 
   

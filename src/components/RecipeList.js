@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 // import axiosWithAuth from '../utils/AxiosWithAuth';
 
@@ -11,10 +11,26 @@ const ColorList = ({ colors, updateColors }) => {
   console.log(colors);
   const [editing, setEditing] = useState(false);
   const [colorToEdit, setColorToEdit] = useState(initialColor);
+  const [newColor, setNewColor]=useState({name: ""})
 
-  const [newColor, setNewColor]=useState({name: "",
-  
-  })
+  const [query, setQuery] = useState("");
+
+
+  const filteredRecipes = colors.filter(r => {
+        return r.name.toLowerCase().indexOf(query.toLowerCase()) !== -1;
+    });
+
+  const handleFilterChange = event => {
+        setQuery(event.target.value);
+    };  
+
+
+
+
+
+    
+// ////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 
   const editColor = color => {
     setEditing(true);
@@ -47,7 +63,6 @@ const ColorList = ({ colors, updateColors }) => {
   const deleteColor = color => {
     // axiosWithAuth()
     axios
-    //   .delete(`/api/colors/${color.id}`)
       .delete(`https://recipe-organizer-app.herokuapp.com/char/${color.id}`)
       .then(res => {
       console.log(color, 'delete color')
@@ -61,7 +76,6 @@ const ColorList = ({ colors, updateColors }) => {
     e.preventDefault();
     // axiosWithAuth()
     axios
-    //   .post("/colors", newColor)
       .post('https://recipe-organizer-app.herokuapp.com/char', newColor)
       .then(res => {
         updateColors(res.data);
@@ -72,15 +86,12 @@ const ColorList = ({ colors, updateColors }) => {
       .catch(err => console.log(err));
   };
 
-//  const filteredRecipes = colors.filter(r => {
-//     return r.name.toLowerCase().indexOf(colors.query.toLowerCase()) !== -1;
-//   });
 
 
   return (
-    <div className="colors-wrap">
+    <div>
 
-    <form onSubmit={addColor}>
+    <form onSubmit={addColor} className='Formholder'>
         <input
             className="Input"
             type="text"
@@ -93,18 +104,16 @@ const ColorList = ({ colors, updateColors }) => {
 
         <button className="BtnAddRecipe" >enter</button>
 
-
+{/* SERACH RECIPES */}
         <input 
           className="Input"
             type="text"
-            onChange={colors.handleFilterChange1}
-            value={colors.query}
+            value={query}
+            onChange={handleFilterChange}
             name="name"
-            placeholder="Search Recipes"
+            placeholder="Search Recipe"
             autoComplete="off"
           />
-
-
     </form>
     
 
@@ -132,9 +141,9 @@ const ColorList = ({ colors, updateColors }) => {
 
     <div className='RecipeHolder'>
 
-        {/* {colors.filteredRecipes1.map(color => ( */}
-        {colors.map(color => (
-            
+
+    {filteredRecipes.map(color => (
+        // {colors.map(color => (
             <div className="RecipeCard" key={color.name} >
                 <h2>{color.name}</h2>
                 <button className="BtnDeleteRecipe" onClick={e => {
@@ -144,12 +153,7 @@ const ColorList = ({ colors, updateColors }) => {
                 </button>
 
                 <button className="BtnEditRecipe" onClick={() => editColor(color)}>Edit Recipe</button>
-                    
-                    
-                {/* <div
-                className="color-box"
-                style={{ backgroundColor: color.code.hex }}
-                /> */}
+                
             </div>
         ))}
     </div>

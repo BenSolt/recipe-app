@@ -2,7 +2,7 @@
     font-size: 1.2rem;
     text-align: center; 
     background: gray;
-    padding-top: 15px;
+    padding: 1px;
 }
 
 
@@ -13,26 +13,20 @@
 }
 
 
-/* .Top{
-    display: flex; 
-    margin: 3%;
-    justify-content: space-evenly;
-} */
-
 .navlink{
     margin: 1%;
 }
  
 
-.ReactFormholder{
+.Formholder{
     text-align: center; 
-    padding-bottom: 2rem;
+    padding: 1rem;
     background: gray;
+    
 }
 
 /* Search Bar */
 .Searchbar{
-
     margin-bottom: 2%;
 }
   
@@ -72,11 +66,6 @@
 }
 
 /* FORM ////////////////////////////////////////////*/
-.FormHolder{
-    display: flex;
-    padding: 12px;
-    justify-content: space-evenly;
-}
 
 
 .Input{

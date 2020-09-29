@@ -16,9 +16,12 @@ const RecipeList = ({ recipes, updateRecipes }) => {
   const [query, setQuery] = useState("");
 
 
-  const filteredRecipes = recipes.filter(r => {
-        return r.name.toLowerCase().indexOf(query.toLowerCase()) !== -1;
-    });
+  // NOT USING CURRENTLY - throws error with adding when using both.
+  
+  // const filteredRecipes = recipes.filter(r => {
+  //       return r.name.toLowerCase().indexOf(query.toLowerCase()) !== -1;
+  //   });
+    
 
   const handleFilterChange = event => {
         setQuery(event.target.value);
@@ -66,6 +69,7 @@ const RecipeList = ({ recipes, updateRecipes }) => {
       .then(res => {
       console.log(recip, 'delete recipe')
       updateRecipes(recipes.filter(recip => recip.id !== res.data))
+      window.location.reload();
     })
       .catch(err => console.log(err, 'delete fail'));
 
@@ -74,13 +78,15 @@ const RecipeList = ({ recipes, updateRecipes }) => {
   const addRecipe = e => {
     e.preventDefault();
     // axiosWithAuth()
+    console.log('add recipe')
     axios
       .post('https://recipe-organizer-app.herokuapp.com/char', newRecipe)
       .then(res => {
         updateRecipes(res.data);
-        setnewRecipe({
-          name: ""
-        });
+        window.location.reload();
+        // setnewRecipe({
+        //   name: ""
+        // });
       })
       .catch(err => console.log(err));
   };
@@ -141,9 +147,9 @@ const RecipeList = ({ recipes, updateRecipes }) => {
     <div className='RecipeHolder'>
 
 
-    {filteredRecipes.map(recip => (
-        // {colors.map(color => (
-            <div className="RecipeCard" key={recip.name} >
+    {/* {filteredRecipes.map(recip => ( */}
+        {recipes.map(recip => (
+            <div className="RecipeCard" key={recip.id} >
                 <h2>{recip.name}</h2>
                 <div className="BtnHolder">
                 <button className="BtnDeleteRecipe" onClick={e => {

@@ -3,19 +3,21 @@ import React, {useState} from "react";
 function AddRecipeForm(props) {
 
     return (
-    <form onSubmit={props.addRecipe1} className='Formholder'>
-        <input
-          className="Input"
-          type="text"
-          name="name"
-          required
-          placeholder="Enter Recipe"
-          value={props.v}
-          onChange={props.onC}
-        />
-        <button className="BtnAddRecipe" >Add Recipe</button>
-        
-    </form>
+      <div>
+        <form onSubmit={props.addRecipe1}>
+            <input
+              className="Input"
+              type="text"
+              name="name"
+              required
+              placeholder="Enter Recipe"
+              value={props.valu}
+              onChange={props.onChang}
+            />
+            <button className="BtnAddRecipe" >Add Recipe</button>
+            
+        </form>
+      </div>
     );
   }
 

@@ -22,7 +22,8 @@
     text-align: center; 
     padding: 1rem;
     background: gray;
-    
+    display: flex;
+    justify-content: center;
 }
 
 /*/////////////////// Search Bar ////////////////////////////*/

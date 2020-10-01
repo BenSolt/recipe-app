@@ -1,13 +1,10 @@
 import React, {useState} from "react";
 
-const SearchRecipe = (props) => {
+const SearchRecipeForm = (props) => {
 
   return (
     <div>
-
-
-        <form className='Formholder'>
-
+        <form>
             <input 
             className="Input2"
             type="text"
@@ -22,4 +19,4 @@ const SearchRecipe = (props) => {
     )
 };
 
-export default SearchRecipe;
+export default SearchRecipeForm;

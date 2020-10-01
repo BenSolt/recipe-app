@@ -3,7 +3,7 @@ import axios from "axios";
 // import axiosWithAuth from '../utils/AxiosWithAuth';
 
 import AddRecipeForm from './AddRecipeForm';
-import SearchRecipe from './SearchRecipe';
+import SearchRecipeForm from './SearchRecipeForm';
 
 const initialRecipe = {
   name: ""
@@ -19,12 +19,13 @@ const RecipeList = (props) => {
 
   const [filter, setFilter] = useState("");
 
-  // NOT USING CURRENTLY - throws error with adding when using both.
-  
+
+// NOT USING CURRENTLY - throws error with adding when using both.
+
   // const filteredRecipes = props.recipes.filter(r => {
   //       return r.name.toLowerCase().indexOf(filter.toLowerCase()) !== -1;
   //   });
-
+//////////////////////////////////////////////
     
 
   const handleFilterChange = e => {
@@ -92,33 +93,10 @@ const RecipeList = (props) => {
   return (
     <div>
 
-    {/* <form onSubmit={addRecipe} className='Formholder'>
-        <input
-            className="Input"
-            type="text"
-            name="name"
-            required
-            placeholder="Enter Recipe"
-            value={newRecipe.name}
-            onChange={e => setnewRecipe({ ...newRecipe, name: e.target.value })}
-        />
-
-        <button className="BtnAddRecipe" >Add Recipe</button> */}
-
-{/* SERACH RECIPES */}
-        {/* <input 
-          className="Input2"
-            type="text"
-            value={filter}
-            onChange={handleFilterChange}
-            name="name"
-            placeholder="Search Recipe"
-            autoComplete="off"
-          /> */}
-    {/* </form> */}
-    <AddRecipeForm addRecipe1={addRecipe}  v={newRecipe.name} onC={e => setnewRecipe({ ...newRecipe, name: e.target.value })}/>
-    <SearchRecipe  onFilterChange={handleFilterChange}/>
-
+      <div className='Formholder'>
+        <AddRecipeForm addRecipe1={addRecipe}  valu={newRecipe.name} onChang={e => setnewRecipe({ ...newRecipe, name: e.target.value })}/>
+        <SearchRecipeForm  onFilterChange={handleFilterChange}/>
+      </div>
 
     {editing && (
         <form className="EditFormHolder" onSubmit={saveEdit}>
@@ -151,7 +129,7 @@ const RecipeList = (props) => {
           ))} */}
 
         {/* {filteredRecipes.map(recip => (     */}
-        {props.recipes.map(recip => (
+        {props.recipes.map(recip => ( 
             <div className="RecipeCard" key={recip.id} >
                 <h2>{recip.name}</h2>
                 <div className="BtnHolder">

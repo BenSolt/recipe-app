@@ -1,12 +1,12 @@
 import React from 'react';
 // import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 
-import axios from 'axios'
 import './Recipe.css';
 
 import Navbar from "./components/Navbar";
 import RecipePage from "./components/RecipePage";
 
+import ASearchList from "./components/ASearchList";
 
 function App() {
 
@@ -18,6 +18,8 @@ function App() {
       
       <Navbar/>
       <RecipePage/>
+
+      <ASearchList/>
       
   
     

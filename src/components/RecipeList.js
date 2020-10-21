@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 // import axiosWithAuth from '../utils/AxiosWithAuth';
 
@@ -9,7 +9,6 @@ const initialRecipe = {
   name: ""
 };
 
-// const RecipeList = ({ recipes, updateRecipes }) => {
 const RecipeList = (props) => {  
 
   console.log(props.recipes);
@@ -19,19 +18,16 @@ const RecipeList = (props) => {
 
   const [filter, setFilter] = useState("");
 
-
 // NOT USING CURRENTLY - throws error with adding when using both.
 
-  // const filteredRecipes = props.recipes.filter(r => {
-  //       return r.name.toLowerCase().indexOf(filter.toLowerCase()) !== -1;
-  //   });
+  const filteredRecipes = props.recipes.filter(r => {
+        return r.name.toLowerCase().includes(filter.toLowerCase());
+    });
 //////////////////////////////////////////////
-    
 
   const handleFilterChange = e => {
-        setFilter(e.target.value);
+      setFilter(e.target.value);
     };  
-  
 
   const editRecipe = recip => {
     setEditing(true);
@@ -95,7 +91,7 @@ const RecipeList = (props) => {
 
       <div className='Formholder'>
         <AddRecipeForm addRecipe1={addRecipe}  valu={newRecipe.name} onChang={e => setnewRecipe({ ...newRecipe, name: e.target.value })}/>
-        <SearchRecipeForm  onFilterChange={handleFilterChange}/>
+        <SearchRecipeForm filter={filter}  onFilterChange={handleFilterChange}/>
       </div>
 
     {editing && (
@@ -126,9 +122,10 @@ const RecipeList = (props) => {
           <div className="RecipeCard" key={recip.id} >
                 <h2>{recip.name}</h2>
           </div>
-          ))} */}
+          ))}  */}
 
-        {/* {filteredRecipes.map(recip => (     */}
+  
+        
         {props.recipes.map(recip => ( 
             <div className="RecipeCard" key={recip.id} >
                 <h2>{recip.name}</h2>
@@ -144,6 +141,7 @@ const RecipeList = (props) => {
 
             </div>
         ))}
+
     </div>
 
       

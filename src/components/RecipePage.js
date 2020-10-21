@@ -6,7 +6,7 @@ import RecipeList from "./RecipeList";
 
 // import axiosWithAuth from '../utils/AxiosWithAuth';
 
-const BubblePage = () => {
+const RecipePage = () => {
   const [recipeList, setRecipeList] = useState([]);
   const [query, setQuery] = useState("");
 
@@ -27,16 +27,6 @@ const BubblePage = () => {
 }, [query]);
 // },[]);
 
-// const handleFilterChange = event => {
-//     setQuery(event.target.value);
-//   };
-
-// const filteredRecipes = recipeList.filter(r => {
-//     return r.name.toLowerCase().indexOf(query.toLowerCase()) !== -1;
-//   });
-
-
-
   return (
     <div>
 
@@ -50,4 +40,4 @@ const BubblePage = () => {
   );
 };
 
-export default BubblePage;
+export default RecipePage;

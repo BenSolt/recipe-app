@@ -1,5 +1,6 @@
 import React from 'react';
 // import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './Recipe.css';
 
@@ -19,7 +20,7 @@ function App() {
       <Navbar/>
       <RecipePage/>
 
-      <ASearchList/>
+      {/* <ASearchList/> */}
       
   
     

@@ -3,11 +3,13 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './Recipe.css';
+import './Accordion.css';
 
 import Navbar from "./components/Navbar";
 import RecipePage from "./components/RecipePage";
 
 import ASearchList from "./components/ASearchList";
+import { Accordion } from 'react-bootstrap';
 
 function App() {
 

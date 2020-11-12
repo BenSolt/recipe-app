@@ -22,9 +22,9 @@ const RecipeList = (props) => {
 
   // NOT USING CURRENTLY - throws error with adding when using both.
 
-  const filteredRecipes = props.recipes.filter(r => {
-    return r.name.toLowerCase().includes(filter.toLowerCase());
-  });
+  // const filteredRecipes = props.recipes.filter(r => {
+  //   return r.name.toLowerCase().includes(filter.toLowerCase());
+  // });
   //////////////////////////////////////////////
 
   const handleFilterChange = e => {
@@ -97,7 +97,7 @@ const RecipeList = (props) => {
         <SearchRecipeForm filter={filter} onFilterChange={handleFilterChange} />
       </div>
 
-
+{/* EDIT BOX - toggle - show/hide when click "Edit Recipe"*/}
       {editing && (
         <form className="EditFormHolder" onSubmit={saveEdit}>
           <div className="EditForm">
@@ -118,6 +118,7 @@ const RecipeList = (props) => {
           </div>
         </form>
       )}
+{/*END EDIT BOX  */}
 
       <div className='RecipeHolder'>
 
@@ -141,22 +142,20 @@ const RecipeList = (props) => {
                 Delete Recipe
                 </button>
 
-              <button className="BtnEditRecipe" onClick={() => editRecipe(recip)}>Edit Recipe</button>
+              {/* <button className="BtnEditRecipe" onClick={() => editRecipe(recip)}>Edit Recipe</button> */}
 
             </div>
 
             <Accordion >
               <Card>
                 <Card.Header>
-                  <Accordion.Toggle as={Button} eventKey={recip.id} className="BtnEditRecipe" >
+                  <Accordion.Toggle as={Button}  eventKey={recip.id} className="BtnEditRecipe" >
                     Edit Recipe
             </Accordion.Toggle>
                 </Card.Header>
                 <Accordion.Collapse eventKey={recip.id}>
                   <Card.Body>
 
-                    <h4 className='textAccord'>{recip.name}</h4>
-                    
                     <input
                     className="Input"
                     placeholder="Recipe Name"
@@ -164,6 +163,7 @@ const RecipeList = (props) => {
                       setRecipeToEdit({ ...recipeToEdit, name: e.target.value })
                     }
                     value={recipeToEdit.name}
+                    value={recip.name}
                     />
 
                   </Card.Body>

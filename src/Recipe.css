@@ -66,6 +66,7 @@
 
 /* END FORM ////////////////////////////////////////////*/
 
+
 /* EDIT RECIPE FORM /////////////////////////////////// */
 
 .EditFormHolder{
@@ -102,6 +103,7 @@
 /* END EDIT FORM ////////////////////////////////////////////*/
 
 
+
 .BtnHolder{
     display:flex;
     margin: 10px;
@@ -116,6 +118,17 @@
     font-size: 1.2rem;
     border-radius: 5px;
 }
+
+.BtnDeleteRecipe:hover{
+    width: 128px;
+    padding: 10px;
+    background: rgb(200, 0, 0);
+    font-weight: bold;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    color: white;
+}
+
 
 /* Button add Recipe */
 .BtnAddRecipe{

@@ -162,7 +162,7 @@ const RecipeList = (props) => {
                     onChange={e =>
                       setRecipeToEdit({ ...recipeToEdit, name: e.target.value })
                     }
-                    value={recipeToEdit.name}
+                    // value={recipeToEdit.name}
                     value={recip.name}
                     />
 

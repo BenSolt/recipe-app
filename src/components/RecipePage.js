@@ -19,14 +19,11 @@ const RecipePage = () => {
    
     .then(res => {
         setRecipeList(res.data)
-      // const info = res.data.filter(p =>
-      //    p.toLowerCase().includes(query.toLowerCase()),
-      //  );
     })
     .catch(err => {
       console.log(err)
     });
-}, [query]);
+}, [query, recipeList]);
 // },[]);
 
   return (

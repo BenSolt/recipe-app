@@ -44,11 +44,7 @@ const RecipeList_Edit = (props) => {
       .put(`https://recipe-organizer-app.herokuapp.com/char/${recipeToEdit.id}`, recipeToEdit)
       .then(res => { 
         console.log('edit success?')
-        window.location.reload(false);
         props.updateRecipes(x => x = props.recipes.map(recip => {
-        // props.updateRecipes(
-        //   console.log('edit success?'),
-        //   props.recipes.map(recip => {
             if (recip.id === res.data.id) {
               return res.data
             } else {
@@ -67,7 +63,6 @@ const RecipeList_Edit = (props) => {
       .then(res => {
         console.log(recip, 'delete recipe')
         props.updateRecipes(props.recipes.filter(recip => recip.id !== res.data))
-        window.location.reload();
       })
       .catch(err => console.log(err, 'delete fail'));
 

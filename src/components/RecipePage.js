@@ -4,6 +4,8 @@ import axios from "axios";
 // import Bubbles from "./Bubbles";
 import RecipeList from "./RecipeList";
 
+import RecipeList_Edit from "./RecipeList_Edit";
+
 // import axiosWithAuth from '../utils/AxiosWithAuth';
 
 const RecipePage = () => {
@@ -30,10 +32,19 @@ const RecipePage = () => {
   return (
     <div>
 
-      <RecipeList 
-      recipes={recipeList} 
+      <RecipeList_Edit 
+      recipes={recipeList}
       updateRecipes={setRecipeList}
       />
+
+      {/* <RecipeList 
+      recipes={recipeList}
+      updateRecipes={setRecipeList}
+      /> */}
+
+    
+
+    
 
 
     </div>

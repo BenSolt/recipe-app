@@ -11,7 +11,7 @@ const initialRecipe = {
   name: ""
 };
 
-const RecipeList = (props) => {
+const RecipeList_Edit = (props) => {
 
   console.log(props.recipes);
   const [editing, setEditing] = useState(false);
@@ -20,15 +20,7 @@ const RecipeList = (props) => {
 
   const [filter, setFilter] = useState("");
 
-  //////////////////////////////////////////////
-  // NOT USING CURRENTLY - throws error with adding when using both - cannot read property 'tolowerCase of undefined.
 
-  // const filteredRecipes = props.recipes.filter(r => {
-  //   return r.name.toLowerCase().includes(filter.toLowerCase());
-  // });
-
-  //////////////////////////////////////////////
-  //////////////////////////////////////////////
 
   const handleFilterChange = e => {
     setFilter(e.target.value);
@@ -42,7 +34,6 @@ const RecipeList = (props) => {
   const saveEdit = e => {
     e.preventDefault();
 
-    // axiosWithAuth()
     axios
       .put(`https://recipe-organizer-app.herokuapp.com/char/${recipeToEdit.id}`, recipeToEdit)
       .then(res => {
@@ -63,7 +54,6 @@ const RecipeList = (props) => {
 
 
   const deleteRecipe = recip => {
-    // axiosWithAuth()
     axios
       .delete(`https://recipe-organizer-app.herokuapp.com/char/${recip.id}`)
       .then(res => {
@@ -77,7 +67,6 @@ const RecipeList = (props) => {
 
   const addRecipe = e => {
     e.preventDefault();
-    // axiosWithAuth()
     console.log('add recipe')
     axios
       .post('https://recipe-organizer-app.herokuapp.com/char', newRecipe)
@@ -101,6 +90,24 @@ const RecipeList = (props) => {
       </div>
 
 {/* EDIT BOX - toggle - show/hide when click "Edit Recipe"*/}
+
+      <p>colors</p>
+      <ul>
+        {props.recipes.map(color => (
+          <li key={color.id} onClick={() => editRecipe(color)}>
+            <span>
+              <span className="delete" onClick={e => {
+                    e.stopPropagation();
+                    deleteRecipe(color)
+                  }
+                }>
+              </span>{" "}
+              {color.name}
+            </span>
+
+          </li>
+        ))}
+      </ul>
       {editing && (
         <form className="EditFormHolder" onSubmit={saveEdit}>
           <div className="EditForm">
@@ -125,20 +132,6 @@ const RecipeList = (props) => {
 
       <div className='RecipeHolder'>
 
-      {/* ////////////////////////////////////////////// 
-        //////////////////////////////////////////////*/}
-
-        {/* {filteredRecipes.map(recip => (          
-          <div className="RecipeCard" key={recip.id} >
-                <h2>{recip.name}</h2>
-          </div>
-          ))}  */}
-
-      {/* ////////////////////////////////////////////// 
-        //////////////////////////////////////////////*/}
-
-
-
 
         {props.recipes.map(recip => (
           <div className="RecipeCard" key={recip.id} >
@@ -148,10 +141,9 @@ const RecipeList = (props) => {
                 e.stopPropagation();
                 deleteRecipe(recip)
               }}>
-                Delete Recipe
+                Delete
                 </button>
 
-              {/* <button className="BtnEditRecipe" onClick={() => editRecipe(recip)}>Edit Recipe</button> */}
 
             </div>
 
@@ -171,8 +163,8 @@ const RecipeList = (props) => {
                     onChange={e =>
                       setRecipeToEdit({ ...recipeToEdit, name: e.target.value })
                     }
-                    // value={recipeToEdit.name}
-                    value={recip.name}
+                    value={recipeToEdit.name}
+                    // value={recip.name}
                     />
 
                   </Card.Body>
@@ -190,4 +182,4 @@ const RecipeList = (props) => {
   );
 };
 
-export default RecipeList;
+export default RecipeList_Edit;

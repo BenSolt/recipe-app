@@ -10,6 +10,7 @@ import RecipePage from "./components/RecipePage";
 
 import ASearchList from "./components/ASearchList";
 import { Accordion } from 'react-bootstrap';
+// import BubblePage from './components/BubblePage';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
       
       <Navbar/>
       <RecipePage/>
+     
 
       {/* <ASearchList/> */}
       

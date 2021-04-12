@@ -20,7 +20,13 @@ const RecipeList_Edit = (props) => {
 
   const [filter, setFilter] = useState("");
 
-
+{/* ////////////////////////////////////// */}
+{/* ////////////////////////////////////// */}
+  const filteredRecipes = props.recipes.filter(r => {
+    return r.name.toLowerCase().includes(filter.toLowerCase());
+  });
+{/* ////////////////////////////////////// */}
+{/* ////////////////////////////////////// */}
 
   const handleFilterChange = e => {
     setFilter(e.target.value);
@@ -36,10 +42,13 @@ const RecipeList_Edit = (props) => {
 
     axios
       .put(`https://recipe-organizer-app.herokuapp.com/char/${recipeToEdit.id}`, recipeToEdit)
-      .then(res => {
-        props.updateRecipes(
-          console.log('edit success?'),
-          props.recipes.map(recip => {
+      .then(res => { 
+        console.log('edit success?')
+        window.location.reload(false);
+        props.updateRecipes(x => x = props.recipes.map(recip => {
+        // props.updateRecipes(
+        //   console.log('edit success?'),
+        //   props.recipes.map(recip => {
             if (recip.id === res.data.id) {
               return res.data
             } else {
@@ -47,8 +56,7 @@ const RecipeList_Edit = (props) => {
             }
           })
 
-        )
-      })
+        )})
       .catch(err => console.log(err, 'edit failed'));
   };
 
@@ -91,8 +99,9 @@ const RecipeList_Edit = (props) => {
 
 {/* EDIT BOX - toggle - show/hide when click "Edit Recipe"*/}
 
-      <p>colors</p>
+      <h1>colors</h1>
       <ul>
+     
         {props.recipes.map(color => (
           <li key={color.id} onClick={() => editRecipe(color)}>
             <span>
@@ -132,10 +141,20 @@ const RecipeList_Edit = (props) => {
 
       <div className='RecipeHolder'>
 
+{/* ////////////////////////////////////// */}
+{/* ////////////////////////////////////// */}
+          {filteredRecipes.map(recip => (          
+          <div className="RecipeCard" key={recip.id} onClick={() => editRecipe(recip)}>
+                <h2>{recip.name}</h2>
+          </div>
+          ))} 
+{/* ////////////////////////////////////// */}
+{/* ////////////////////////////////////// */}
 
         {props.recipes.map(recip => (
-          <div className="RecipeCard" key={recip.id} >
-            <h2>{recip.name}</h2>
+      
+          <div className="RecipeCard" key={recip.id}>
+            <h2>{recip.name} </h2>
             <div className="BtnHolder">
               <button className="BtnDeleteRecipe" onClick={e => {
                 e.stopPropagation();

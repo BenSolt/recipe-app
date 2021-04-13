@@ -24,21 +24,14 @@ const RecipePage = () => {
       console.log(err)
     });
 }, [query, recipeList]);
-// },[]);
 
   return (
     <div>
-
 
       <RecipeList 
       recipes={recipeList}
       updateRecipes={setRecipeList}
       />
-
-    
-
-    
-
 
     </div>
   );

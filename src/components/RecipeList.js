@@ -41,13 +41,16 @@ const RecipeList = (props) => {
     e.preventDefault();
 
 
-  // Scroll to section of edit box
-  const scrollEdit = e => {
+///// SCROLL TO EDIT BOX//////////////////////
+
+  const scrollEdit = recip => {
       var elmnt = document.getElementById("contentArt");
       elmnt.scrollIntoView();
-    }
+    };
 
-    // axiosWithAuth()
+////////EDIT RECIPE////////////////////////////////////////
+///////////////////////////////////////////////////////////
+  // axiosWithAuth()
     axios
       .put(`https://recipe-organizer-app.herokuapp.com/char/${recipeToEdit.id}`, recipeToEdit)
       .then(res => {
@@ -64,6 +67,8 @@ const RecipeList = (props) => {
   };
 
 
+////////DELETE RECIPE////////////////////////////////////////
+///////////////////////////////////////////////////////////
   const deleteRecipe = recip => {
     // axiosWithAuth()
     axios
@@ -76,6 +81,9 @@ const RecipeList = (props) => {
 
   };
 
+  
+////////ADD RECIPE//////////////////////////////////////////
+///////////////////////////////////////////////////////////
   const addRecipe = e => {
     e.preventDefault();
     // axiosWithAuth()
@@ -97,7 +105,16 @@ const RecipeList = (props) => {
         <SearchRecipeForm filter={filter} onFilterChange={handleFilterChange} />
       </div>
 
-{/* EDIT RECIPE BOX */}
+      <button className="BtnEditRecipe" onClick={() =>
+              scrollEdit()}>
+              Scroll
+            </button>
+
+      <div id="contentArt">
+        Scroll to here!
+          </div>
+
+{/* EDIT RECIPE BOX //////////////////////////////////////////*/}
       {editing && (
         <form className="EditFormHolder" onSubmit={saveEdit}>
           <div className="EditForm">
@@ -118,7 +135,7 @@ const RecipeList = (props) => {
           </div>
         </form>
       )}
-{/* END EDIT RECIPE BOX */}
+{/* END EDIT RECIPE BOX /////////////////////////////////*/}
 
       <div className='RecipeHolder'>
 
@@ -127,24 +144,25 @@ const RecipeList = (props) => {
         {filteredRecipes.map(recip => (
           <div className="RecipeCard" key={recip.id} >
             <h2>{recip.name}</h2>
+            
 
             <button className="BtnEditRecipe" onClick={() =>
-            // On button click - scroll to Edit field
-            // <button onClick={scrollArt} className='navlink'>ARTWORK</button>
-              editRecipe(recip) }>
+              editRecipe(recip)}>
               Edit Recipe
-                </button>
+            </button>
+
+        
 
             <button className="BtnDeleteRecipe" onClick={e => {
               e.stopPropagation();
-              deleteRecipe(recip)
-            }}>
+              deleteRecipe(recip)}}>
               Delete
-                </button>
+            </button>
+
           </div>
         ))}
-        {/* ////////////////////////////////////// */}
-        {/* ////////////////////////////////////// */}
+{/* ////////////////////////////////////// */}
+{/* ////////////////////////////////////// */}
 
 
 

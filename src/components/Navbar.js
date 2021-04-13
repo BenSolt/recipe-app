@@ -17,13 +17,9 @@ function Navbar() {
 
        {/* <button onClick={scrollArt} className='navlink'>ARTWORK</button> */}
 
-      <div id="contentArt">
+      {/* <div id="contentArt">
         content
-          </div>
-
-
-      {/* <NavLink className='navlink' to='/'>HOME</NavLink>
-          <NavLink className='navlink' to='/bubblepage'>Bubble Page</NavLink> */}
+          </div> */}
 
     </div>
   )

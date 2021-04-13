@@ -134,6 +134,7 @@ const RecipeList = (props) => {
         {filteredRecipes.map(recip => (
           <div className="RecipeCard" key={recip.id} >
             <h2>{recip.name}</h2>
+            <h4>{recip.name}</h4>
             
 
             <button className="BtnEditRecipe" onClick={() =>

@@ -35,18 +35,12 @@ const RecipeList = (props) => {
   const editRecipe = recip => {
     setEditing(true);
     setRecipeToEdit(recip);
+    scrollEdit()
   };
 
   const saveEdit = e => {
     e.preventDefault();
 
-
-///// SCROLL TO EDIT BOX//////////////////////
-
-  const scrollEdit = recip => {
-      var elmnt = document.getElementById("contentArt");
-      elmnt.scrollIntoView();
-    };
 
 ////////EDIT RECIPE////////////////////////////////////////
 ///////////////////////////////////////////////////////////
@@ -96,6 +90,10 @@ const RecipeList = (props) => {
       .catch(err => console.log(err));
   };
 
+  const scrollEdit = e => {
+    var elmnt = document.getElementById("contentArt");
+    elmnt.scrollIntoView();
+  };
 
   return (
     <div>
@@ -105,18 +103,10 @@ const RecipeList = (props) => {
         <SearchRecipeForm filter={filter} onFilterChange={handleFilterChange} />
       </div>
 
-      <button className="BtnEditRecipe" onClick={() =>
-              scrollEdit()}>
-              Scroll
-            </button>
-
-      <div id="contentArt">
-        Scroll to here!
-          </div>
 
 {/* EDIT RECIPE BOX //////////////////////////////////////////*/}
       {editing && (
-        <form className="EditFormHolder" onSubmit={saveEdit}>
+        <form className="EditFormHolder" id="contentArt" onSubmit={saveEdit}>
           <div className="EditForm">
             <h2>Edit Recipe</h2>
             <h2>

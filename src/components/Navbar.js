@@ -5,16 +5,28 @@ import React from "react";
 
 function Navbar() {
 
-    
-    return (
-    
-        <div className='Navbar'>
-          <h1>RECIPE ORGANZIER</h1>
-          {/* <NavLink className='navlink' to='/'>HOME</NavLink>
+  function scrollArt() {
+    var elmnt = document.getElementById("contentArt");
+    elmnt.scrollIntoView();
+  }
+
+  return (
+
+    <div className='Navbar'>
+      <h1>RECIPE ORGANZIER</h1>
+
+       {/* <button onClick={scrollArt} className='navlink'>ARTWORK</button> */}
+
+      <div id="contentArt">
+        content
+          </div>
+
+
+      {/* <NavLink className='navlink' to='/'>HOME</NavLink>
           <NavLink className='navlink' to='/bubblepage'>Bubble Page</NavLink> */}
-       
-        </div>
-    )
+
+    </div>
+  )
 
 }
 

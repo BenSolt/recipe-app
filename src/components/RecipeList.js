@@ -20,15 +20,13 @@ const RecipeList = (props) => {
 
   const [filter, setFilter] = useState("");
 
-  //////////////////////////////////////////////
-  // NOT USING CURRENTLY - throws error with adding when using both - cannot read property 'tolowerCase of undefined.
-
-  // const filteredRecipes = props.recipes.filter(r => {
-  //   return r.name.toLowerCase().includes(filter.toLowerCase());
-  // });
-
-  //////////////////////////////////////////////
-  //////////////////////////////////////////////
+ {/* ////////////////////////////////////// */ }
+  {/* ////////////////////////////////////// */ }
+  const filteredRecipes = props.recipes.filter(r => {
+    return r.name.toLowerCase().includes(filter.toLowerCase());
+  });
+  {/* ////////////////////////////////////// */ }
+  {/* ////////////////////////////////////// */ }
 
   const handleFilterChange = e => {
     setFilter(e.target.value);
@@ -42,22 +40,26 @@ const RecipeList = (props) => {
   const saveEdit = e => {
     e.preventDefault();
 
+
+  // Scroll to section of edit box
+  const scrollEdit = e => {
+      var elmnt = document.getElementById("contentArt");
+      elmnt.scrollIntoView();
+    }
+
     // axiosWithAuth()
     axios
       .put(`https://recipe-organizer-app.herokuapp.com/char/${recipeToEdit.id}`, recipeToEdit)
       .then(res => {
-        props.updateRecipes(
-          console.log('edit success?'),
-          props.recipes.map(recip => {
-            if (recip.id === res.data.id) {
-              return res.data
-            } else {
-              return recip;
-            }
-          })
-
-        )
-      })
+        console.log('edit success?')
+        props.updateRecipes(x => x = props.recipes.map(recip => {
+          if (recip.id === res.data.id) {
+            return res.data
+          } else {
+            return recip;
+          }
+        })
+      )})
       .catch(err => console.log(err, 'edit failed'));
   };
 
@@ -69,7 +71,6 @@ const RecipeList = (props) => {
       .then(res => {
         console.log(recip, 'delete recipe')
         props.updateRecipes(props.recipes.filter(recip => recip.id !== res.data))
-        window.location.reload();
       })
       .catch(err => console.log(err, 'delete fail'));
 
@@ -83,10 +84,6 @@ const RecipeList = (props) => {
       .post('https://recipe-organizer-app.herokuapp.com/char', newRecipe)
       .then(res => {
         props.updateRecipes(res.data);
-        window.location.reload(false);
-        // setnewRecipe({
-        //   name: ""
-        // });
       })
       .catch(err => console.log(err));
   };
@@ -100,7 +97,7 @@ const RecipeList = (props) => {
         <SearchRecipeForm filter={filter} onFilterChange={handleFilterChange} />
       </div>
 
-{/* EDIT BOX - toggle - show/hide when click "Edit Recipe"*/}
+{/* EDIT RECIPE BOX */}
       {editing && (
         <form className="EditFormHolder" onSubmit={saveEdit}>
           <div className="EditForm">
@@ -121,26 +118,37 @@ const RecipeList = (props) => {
           </div>
         </form>
       )}
-{/*END EDIT BOX  */}
+{/* END EDIT RECIPE BOX */}
 
       <div className='RecipeHolder'>
 
-      {/* ////////////////////////////////////////////// 
-        //////////////////////////////////////////////*/}
-
-        {/* {filteredRecipes.map(recip => (          
+{/* //////////////RECIPE CARD//////////////////////////// */}
+{/* //////////////////////////////////////////////////// */}
+        {filteredRecipes.map(recip => (
           <div className="RecipeCard" key={recip.id} >
-                <h2>{recip.name}</h2>
+            <h2>{recip.name}</h2>
+
+            <button className="BtnEditRecipe" onClick={() =>
+            // On button click - scroll to Edit field
+            // <button onClick={scrollArt} className='navlink'>ARTWORK</button>
+              editRecipe(recip) }>
+              Edit Recipe
+                </button>
+
+            <button className="BtnDeleteRecipe" onClick={e => {
+              e.stopPropagation();
+              deleteRecipe(recip)
+            }}>
+              Delete
+                </button>
           </div>
-          ))}  */}
-
-      {/* ////////////////////////////////////////////// 
-        //////////////////////////////////////////////*/}
-
+        ))}
+        {/* ////////////////////////////////////// */}
+        {/* ////////////////////////////////////// */}
 
 
 
-        {props.recipes.map(recip => (
+        {/* {props.recipes.map(recip => (
           <div className="RecipeCard" key={recip.id} >
             <h2>{recip.name}</h2>
             <div className="BtnHolder">
@@ -151,7 +159,7 @@ const RecipeList = (props) => {
                 Delete Recipe
                 </button>
 
-              {/* <button className="BtnEditRecipe" onClick={() => editRecipe(recip)}>Edit Recipe</button> */}
+              <button className="BtnEditRecipe" onClick={() => editRecipe(recip)}>Edit Recipe</button>
 
             </div>
 
@@ -181,7 +189,7 @@ const RecipeList = (props) => {
             </Accordion>
 
           </div>
-        ))}
+        ))} */}
 
       </div>
 

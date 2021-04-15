@@ -26,7 +26,8 @@ const RecipeList = (props) => {
   const filteredRecipes = props.recipes.filter(r => {
     return r.name.toLowerCase().includes(filter.toLowerCase());
   });
-
+////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
 
   const handleFilterChange = e => {
     setFilter(e.target.value);
@@ -146,7 +147,9 @@ const RecipeList = (props) => {
 
         {/* //////////////RECIPE CARD//////////////////////////// */}
         {/* //////////////////////////////////////////////////// */}
+        
         {filteredRecipes.map(recip => (
+        // {props.recipes.map(recip => (
           <div className="RecipeCard" key={recip.id} >
             <h2>{recip.name}</h2>
             <h4>i: {recip.ingredients}</h4>

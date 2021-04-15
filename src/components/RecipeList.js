@@ -8,7 +8,8 @@ import SearchRecipeForm from './SearchRecipeForm';
 
 
 const initialRecipe = {
-  name: ""
+  name: "",
+  ingredients: ""
 };
 
 const RecipeList = (props) => {
@@ -16,17 +17,16 @@ const RecipeList = (props) => {
   console.log(props.recipes);
   const [editing, setEditing] = useState(false);
   const [recipeToEdit, setRecipeToEdit] = useState(initialRecipe);
-  const [newRecipe, setnewRecipe] = useState({ name: "" })
+  const [newRecipe, setnewRecipe] = useState({ name: "", ingredients: "" })
 
   const [filter, setFilter] = useState("");
-
- {/* ////////////////////////////////////// */ }
-  {/* ////////////////////////////////////// */ }
+  
+////////////////////////////////////////////////////////////////////////////////////////
+// THIS IS Throwing an error - when trying to add recipe. "cannont read property 'toLowerCase' of undefined"
   const filteredRecipes = props.recipes.filter(r => {
     return r.name.toLowerCase().includes(filter.toLowerCase());
   });
-  {/* ////////////////////////////////////// */ }
-  {/* ////////////////////////////////////// */ }
+
 
   const handleFilterChange = e => {
     setFilter(e.target.value);
@@ -42,9 +42,9 @@ const RecipeList = (props) => {
     e.preventDefault();
 
 
-////////EDIT RECIPE////////////////////////////////////////
-///////////////////////////////////////////////////////////
-  // axiosWithAuth()
+    ////////EDIT RECIPE////////////////////////////////////////
+    ///////////////////////////////////////////////////////////
+    // axiosWithAuth()
     axios
       .put(`https://recipe-organizer-app.herokuapp.com/char/${recipeToEdit.id}`, recipeToEdit)
       .then(res => {
@@ -56,13 +56,14 @@ const RecipeList = (props) => {
             return recip;
           }
         })
-      )})
+        )
+      })
       .catch(err => console.log(err, 'edit failed'));
   };
 
 
-////////DELETE RECIPE////////////////////////////////////////
-///////////////////////////////////////////////////////////
+  ////////DELETE RECIPE////////////////////////////////////////
+  ///////////////////////////////////////////////////////////
   const deleteRecipe = recip => {
     // axiosWithAuth()
     axios
@@ -75,9 +76,9 @@ const RecipeList = (props) => {
 
   };
 
-  
-////////ADD RECIPE//////////////////////////////////////////
-///////////////////////////////////////////////////////////
+
+  ////////ADD RECIPE//////////////////////////////////////////
+  ///////////////////////////////////////////////////////////
   const addRecipe = e => {
     e.preventDefault();
     // axiosWithAuth()
@@ -99,12 +100,18 @@ const RecipeList = (props) => {
     <div>
 
       <div className='Formholder'>
-        <AddRecipeForm addRecipe1={addRecipe} valu={newRecipe.name} onChang={e => setnewRecipe({ ...newRecipe, name: e.target.value })} />
+        <AddRecipeForm
+          addRecipe1={addRecipe}
+          name1={newRecipe.name}
+          onChange1={e => setnewRecipe({ ...newRecipe, [e.target.name]: e.target.value })} />
+
         <SearchRecipeForm filter={filter} onFilterChange={handleFilterChange} />
       </div>
 
+      <div id="contentArt"></div>
 
-{/* EDIT RECIPE BOX //////////////////////////////////////////*/}
+
+      {/* EDIT RECIPE BOX //////////////////////////////////////////*/}
       {editing && (
         <form className="EditFormHolder" id="contentArt" onSubmit={saveEdit}>
           <div className="EditForm">
@@ -112,11 +119,19 @@ const RecipeList = (props) => {
             <h2>
               <input
                 className="Input"
-                placeholder="Recipe Name"
+                placeholder="Name"
                 onChange={e =>
                   setRecipeToEdit({ ...recipeToEdit, name: e.target.value })
                 }
                 value={recipeToEdit.name}
+              />
+               <input
+                className="Input"
+                placeholder="Ingredients"
+                onChange={e =>
+                  setRecipeToEdit({ ...recipeToEdit, ingredients: e.target.value })
+                }
+                value={recipeToEdit.ingredients}
               />
             </h2>
 
@@ -125,35 +140,36 @@ const RecipeList = (props) => {
           </div>
         </form>
       )}
-{/* END EDIT RECIPE BOX /////////////////////////////////*/}
+      {/* END EDIT RECIPE BOX /////////////////////////////////*/}
 
       <div className='RecipeHolder'>
 
-{/* //////////////RECIPE CARD//////////////////////////// */}
-{/* //////////////////////////////////////////////////// */}
+        {/* //////////////RECIPE CARD//////////////////////////// */}
+        {/* //////////////////////////////////////////////////// */}
         {filteredRecipes.map(recip => (
           <div className="RecipeCard" key={recip.id} >
             <h2>{recip.name}</h2>
-            <h4>{recip.name}</h4>
-            
+            <h4>i: {recip.ingredients}</h4>
+
 
             <button className="BtnEditRecipe" onClick={() =>
               editRecipe(recip)}>
               Edit Recipe
             </button>
 
-        
+
 
             <button className="BtnDeleteRecipe" onClick={e => {
               e.stopPropagation();
-              deleteRecipe(recip)}}>
+              deleteRecipe(recip)
+            }}>
               Delete
             </button>
 
           </div>
         ))}
-{/* ////////////////////////////////////// */}
-{/* ////////////////////////////////////// */}
+        {/* ////////////////////////////////////// */}
+        {/* ////////////////////////////////////// */}
 
 
 

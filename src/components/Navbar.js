@@ -15,13 +15,6 @@ function Navbar() {
     <div className='Navbar'>
       <h1>RECIPE ORGANZIER</h1>
 
-       <button onClick={scrollArt} className='navlink'>ARTWORK</button>
-
-      <div id="contentArt">
-        content
-          </div>
-
-
     </div>
   )
 

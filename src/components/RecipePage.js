@@ -23,7 +23,10 @@ const RecipePage = () => {
     .catch(err => {
       console.log(err)
     });
-}, [query, recipeList]);
+}, [query]);
+
+// Having recipeList - calls continuesly...
+// }, [query, recipeList]);
 
   return (
     <div>

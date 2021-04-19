@@ -20,13 +20,17 @@ const RecipeList = (props) => {
 
   const [filter, setFilter] = useState("");
   
-////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
 // THIS IS Throwing an error - when trying to add recipe. "cannot read property 'toLowerCase' of undefined"
-  // const filteredRecipes = props.recipes.filter(r => {
-  //   return r.name.toLowerCase().includes(filter.toLowerCase());
-  // });
-////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////
+
+  const filteredRecipes = props.recipes.filter(r => {
+    return r.name.toLowerCase().includes(filter.toLowerCase());
+  });
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   const handleFilterChange = e => {
     setFilter(e.target.value);
@@ -92,7 +96,7 @@ const RecipeList = (props) => {
   };
 
   const scrollEdit = e => {
-    var elmnt = document.getElementById("contentArt");
+    var elmnt = document.getElementById("movetosearchbar");
     elmnt.scrollIntoView();
   };
 
@@ -110,12 +114,12 @@ const RecipeList = (props) => {
         <SearchRecipeForm filter={filter} onFilterChange={handleFilterChange} />
       </div>
 
-      <div id="contentArt"></div>
+      <div id="movetosearchbar"></div>
 
 
       {/* EDIT RECIPE BOX //////////////////////////////////////////*/}
       {editing && (
-        <form className="EditFormHolder" id="contentArt" onSubmit={saveEdit}>
+        <form className="EditFormHolder" id="movetosearchbar" onSubmit={saveEdit}>
           <div className="EditForm">
             <h2>Edit Recipe</h2>
             <h2>
@@ -149,9 +153,10 @@ const RecipeList = (props) => {
         {/* //////////////RECIPE CARD//////////////////////////// */}
         {/* //////////////////////////////////////////////////// */}
          
+         
         
-        {/* {filteredRecipes.map(recip => ( */}
-        {props.recipes.map(recip => (
+        {filteredRecipes.map(recip => (
+        // {props.recipes.map(recip => (
           <div className="RecipeCard" key={recip.id} >
             <h2>name: {recip.name}</h2>
             <h4>ingred: {recip.ingredients}</h4>

@@ -22,11 +22,11 @@ function App() {
     <main >
       
       <Navbar/>
-      {/* <RecipePage/> */}
+      <RecipePage/>
      
 
       {/* <APage/> */}
-      <NotePage/>
+      {/* <NotePage/> */}
       
   
     

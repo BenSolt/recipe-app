@@ -18,7 +18,7 @@ const NoteForm = props => {
   };
   return (
    
-      <form onSubmit={submitForm}>
+      <form className='NoteForm' onSubmit={submitForm}>
         <label htmlFor="title">Note Title</label>
         <input
           type="text"

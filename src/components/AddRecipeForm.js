@@ -21,6 +21,7 @@ function AddRecipeForm(props) {
           name="ingredients"
           required
           placeholder="Enter ingredients"
+          value={props.ingredients1}
           onChange={props.onChange1}
         />
         <button className="BtnAddRecipe" >Add Recipe</button>

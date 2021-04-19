@@ -34,6 +34,7 @@ const RecipePage = () => {
       <RecipeList 
       recipes={recipeList}
       updateRecipes={setRecipeList}
+    
       />
 
     </div>

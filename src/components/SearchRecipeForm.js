@@ -14,6 +14,7 @@ const SearchRecipeForm = (props) => {
             placeholder="Search Recipe"
             autoComplete="off"
             />
+            
         </form>
     </div>
     )

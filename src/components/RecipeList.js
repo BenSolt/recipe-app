@@ -6,7 +6,6 @@ import { Accordion, Card, Button } from 'react-bootstrap'
 import AddRecipeForm from './AddRecipeForm';
 import SearchRecipeForm from './SearchRecipeForm';
 
-
 const initialRecipe = {
   name: "",
   ingredients: ""
@@ -22,10 +21,10 @@ const RecipeList = (props) => {
   const [filter, setFilter] = useState("");
   
 ////////////////////////////////////////////////////////////////////////////////////////
-// THIS IS Throwing an error - when trying to add recipe. "cannont read property 'toLowerCase' of undefined"
-  const filteredRecipes = props.recipes.filter(r => {
-    return r.name.toLowerCase().includes(filter.toLowerCase());
-  });
+// THIS IS Throwing an error - when trying to add recipe. "cannot read property 'toLowerCase' of undefined"
+  // const filteredRecipes = props.recipes.filter(r => {
+  //   return r.name.toLowerCase().includes(filter.toLowerCase());
+  // });
 ////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
 
@@ -97,6 +96,8 @@ const RecipeList = (props) => {
     elmnt.scrollIntoView();
   };
 
+
+
   return (
     <div>
 
@@ -147,12 +148,13 @@ const RecipeList = (props) => {
 
         {/* //////////////RECIPE CARD//////////////////////////// */}
         {/* //////////////////////////////////////////////////// */}
+         
         
-        {filteredRecipes.map(recip => (
-        // {props.recipes.map(recip => (
+        {/* {filteredRecipes.map(recip => ( */}
+        {props.recipes.map(recip => (
           <div className="RecipeCard" key={recip.id} >
-            <h2>{recip.name}</h2>
-            <h4>i: {recip.ingredients}</h4>
+            <h2>name: {recip.name}</h2>
+            <h4>ingred: {recip.ingredients}</h4>
 
 
             <button className="BtnEditRecipe" onClick={() =>

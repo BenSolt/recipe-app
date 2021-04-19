@@ -1,40 +1,37 @@
-import React, {useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from 'axios';
 
 import AEdit from './AEdit';
 import ASearch from './ASearch';
-import AList from './AList';
+import AListFilter from './AListFilter';
 
 export default function App() {
-  const dataInfo = ["Chocolate Chip Cookies", "Pizza", "spagetti"];
+  const dataInfo = ["Chocolate Chip Cookies", "Pizza", "spagetti", 'a', 'b'];
+
 
   const [recipeList, setRecipeList] = useState([]);
   const [query, setQuery] = useState("");
 
   useEffect(() => {
     axios
-  // axiosWithAuth()
-    .get('https://recipe-organizer-app.herokuapp.com/char')
-   
-    .then(res => {
-        setRecipeList(res.data)
-      // const info = res.data.filter(p =>
-      //    p.toLowerCase().includes(query.toLowerCase()),
-      //  );
-    })
-    .catch(err => {
-      console.log(err)
-    });
-}, [query]);
+      .get('https://recipe-organizer-app.herokuapp.com/char')
 
- 
+      .then(res => {
+        setRecipeList(res.data)
+      })
+      .catch(err => {
+        console.log(err)
+      });
+  }, [query]);
+
+
   return (
     <div className="App">
-      <SearchAndList 
-      dataInfo2={dataInfo}
-      recipes={recipeList} 
-      updateRecipes={setRecipeList} 
-      
+      <SearchAndList
+        dataInfo2={dataInfo}
+        recipes={recipeList}
+        updateRecipes={setRecipeList}
+
       />
     </div>
   );
@@ -42,16 +39,14 @@ export default function App() {
 
 function SearchAndList(props) {
   const dataSearch = props.dataInfo2;
-  // const dataSearch = props.updateRecipes;
-  
- 
+
+
   const [filter, setFilter] = useState("");
   const [filteredData, setFilteredData] = useState(dataSearch);
 
-
   function handleFilterChange(f) {
-    const fd = dataSearch.filter((datum) => {
-      return datum.toLowerCase().includes(f.toLowerCase());
+    const fd = dataSearch.filter((data1) => {
+      return data1.toLowerCase().includes(f.toLowerCase());
     });
     setFilteredData(fd);
     setFilter(f);
@@ -68,7 +63,7 @@ function SearchAndList(props) {
 
       <ASearch filter={filter} onFilterChange={handleFilterChange} />
 
-      <AList filteredData1={filteredData} />
+      <AListFilter filteredData1={filteredData} />
 
     </div>
   );

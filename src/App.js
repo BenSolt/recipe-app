@@ -8,8 +8,9 @@ import './Accordion.css';
 import Navbar from "./components/Navbar";
 import RecipePage from "./components/RecipePage";
 
-import ASearchList from "./components/ASearchList";
+import APage from "./components/page2/APage";
 import { Accordion } from 'react-bootstrap';
+import NotePage from './components/pagetest3/NotePage';
 // import BubblePage from './components/BubblePage';
 
 function App() {
@@ -21,10 +22,11 @@ function App() {
     <main >
       
       <Navbar/>
-      <RecipePage/>
+      {/* <RecipePage/> */}
      
 
-      {/* <ASearchList/> */}
+      {/* <APage/> */}
+      <NotePage/>
       
   
     

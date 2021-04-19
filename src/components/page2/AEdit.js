@@ -18,7 +18,8 @@ function AEdit(props) {
           value={edit}
           onChange={(e) => setEdit(e.target.value)}
         />
-        <input type="submit" onClick={handleSubmit} />
+        <input type="submit" onClick={handleSubmit}/>
+        
       </div>
     );
   }

@@ -14,8 +14,6 @@ import NotePage from './components/pagetest3/NotePage';
 
 function App() {
 
-  // const data = ["tomato", "potato"];
-
 
   return (
     <main >

@@ -24,9 +24,9 @@ const RecipeList = (props) => {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 // THIS IS Throwing an error - when trying to add recipe. "cannot read property 'toLowerCase' of undefined"
 
-  const filteredRecipes = props.recipes.filter(r => {
-    return r.name.toLowerCase().includes(filter.toLowerCase());
-  });
+  // const filteredRecipes = props.recipes.filter(r => {
+  //   return r.name.toLowerCase().includes(filter.toLowerCase());
+  // });
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -75,6 +75,7 @@ const RecipeList = (props) => {
       .then(res => {
         console.log(recip, 'delete recipe')
         props.updateRecipes(props.recipes.filter(recip => recip.id !== res.data))
+    
       })
       .catch(err => console.log(err, 'delete fail'));
 
@@ -91,10 +92,12 @@ const RecipeList = (props) => {
       .post('https://recipe-organizer-app.herokuapp.com/char', newRecipe)
       .then(res => {
         props.updateRecipes(res.data);
+        // props.setRecipeList()
       })
       .catch(err => console.log(err));
   };
 
+  // move page view to Edit recipe box location
   const scrollEdit = e => {
     var elmnt = document.getElementById("movetosearchbar");
     elmnt.scrollIntoView();
@@ -108,7 +111,7 @@ const RecipeList = (props) => {
       <div className='Formholder'>
         <AddRecipeForm
           addRecipe1={addRecipe}
-          name1={newRecipe.name}
+          // name1={newRecipe.name}
           onChange1={e => setnewRecipe({ ...newRecipe, [e.target.name]: e.target.value })} />
 
         <SearchRecipeForm filter={filter} onFilterChange={handleFilterChange} />
@@ -155,9 +158,9 @@ const RecipeList = (props) => {
          
          
         
-        {filteredRecipes.map(recip => (
-        // {props.recipes.map(recip => (
-          <div className="RecipeCard" key={recip.id} >
+        {/* {filteredRecipes.map(recip => ( */}
+        {props.recipes.map((recip, idx )=> (
+          <div className="RecipeCard" key={idx} >
             <h2>name: {recip.name}</h2>
             <h4>ingred: {recip.ingredients}</h4>
 

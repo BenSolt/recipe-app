@@ -10,20 +10,19 @@ import RecipeList from "./RecipeList";
 
 const RecipePage = () => {
   const [recipeList, setRecipeList] = useState([]);
-  const [query, setQuery] = useState("");
+  // const [query, setQuery] = useState("");
 
   useEffect(() => {
     axios
   // axiosWithAuth()
     .get('https://recipe-organizer-app.herokuapp.com/char')
-   
     .then(res => {
         setRecipeList(res.data)
     })
     .catch(err => {
       console.log(err)
     });
-}, [query]);
+}, []);
 
 // Having recipeList - calls continuesly...
 // }, [query, recipeList]);

@@ -24,9 +24,9 @@ const RecipeList = (props) => {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 // THIS IS Throwing an error - when trying to add recipe. "cannot read property 'toLowerCase' of undefined"
 
-  // const filteredRecipes = props.recipes.filter(r => {
-  //   return r.name.toLowerCase().includes(filter.toLowerCase());
-  // });
+  const filteredRecipes = props.recipes.filter(r => {
+    return r.name.toLowerCase().includes(filter.toLowerCase());
+  });
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -161,8 +161,8 @@ const RecipeList = (props) => {
          
          
         
-        {/* {filteredRecipes.map(recip => ( */}
-        {props.recipes.map((recip, idx )=> (
+        {filteredRecipes.map((recip, idx) => (
+        // {props.recipes.map((recip, idx )=> (
           <div className="RecipeCard" key={idx} >
             <h2>name: {recip.name}</h2>
             <h4>ingred: {recip.ingredients}</h4>

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-// import Bubbles from "./Bubbles";
 import RecipeList from "./RecipeList";
 
 // import RecipeList_Edit from "./RecipeList_Edit";

@@ -92,7 +92,10 @@ const RecipeList = (props) => {
       .post('https://recipe-organizer-app.herokuapp.com/char', newRecipe)
       .then(res => {
         props.updateRecipes(res.data);
-        // props.setRecipeList()
+        setnewRecipe({
+          name: "", 
+          ingredients: "" 
+        });
       })
       .catch(err => console.log(err));
   };

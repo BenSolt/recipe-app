@@ -18,14 +18,14 @@ const RecipeList = (props) => {
   const [recipeToEdit, setRecipeToEdit] = useState(initialRecipe);
   const [newRecipe, setnewRecipe] = useState({ name: "", ingredients: "" })
 
-  const [filter, setFilter] = useState("");
+  const [filters, setFilters] = useState("");
   
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 // THIS IS Throwing an error - when trying to add recipe. "cannot read property 'toLowerCase' of undefined"
 
   const filteredRecipes = props.recipes.filter(r => {
-    return r.name.toLowerCase().includes(filter.toLowerCase());
+    return r.name.toLowerCase().includes(filters.toLowerCase());
   });
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -33,7 +33,7 @@ const RecipeList = (props) => {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   const handleFilterChange = e => {
-    setFilter(e.target.value);
+    setFilters(e.target.value);
   };
 
   const editRecipe = recip => {
@@ -91,11 +91,9 @@ const RecipeList = (props) => {
     axios
       .post('https://recipe-organizer-app.herokuapp.com/char', newRecipe)
       .then(res => {
+        console.log('test',res.data)
         props.updateRecipes(res.data);
-        setnewRecipe({
-          name: "", 
-          ingredients: "" 
-        });
+        setnewRecipe({ name: "", ingredients: "" })
       })
       .catch(err => console.log(err));
   };
@@ -114,10 +112,11 @@ const RecipeList = (props) => {
       <div className='Formholder'>
         <AddRecipeForm
           addRecipe1={addRecipe}
-          // name1={newRecipe.name}
+          name1={newRecipe.name}
+          ingredient1={newRecipe.ingredients}
           onChange1={e => setnewRecipe({ ...newRecipe, [e.target.name]: e.target.value })} />
 
-        <SearchRecipeForm filter={filter} onFilterChange={handleFilterChange} />
+        <SearchRecipeForm filter={filters} onFilterChange={handleFilterChange} />
       </div>
 
       <div id="movetosearchbar"></div>
@@ -161,7 +160,7 @@ const RecipeList = (props) => {
          
          
         
-        {filteredRecipes.map((recip, idx) => (
+        {filteredRecipes.map((recip,idx) => (
         // {props.recipes.map((recip, idx )=> (
           <div className="RecipeCard" key={idx} >
             <h2>name: {recip.name}</h2>

@@ -27,8 +27,9 @@ function AddRecipeForm(props) {
           onChange={props.onChange1}
         />
         <button className="BtnAddRecipe" >Add Recipe</button>
-
       </form>
+
+      
     </div>
   );
 }

@@ -24,9 +24,9 @@ const RecipeList = (props) => {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 // THIS IS Throwing an error - when trying to add recipe. "cannot read property 'toLowerCase' of undefined"
 
-  const filteredRecipes = props.recipes.filter(r => {
-    return r.name.toLowerCase().includes(filters.toLowerCase());
-  });
+  // const filteredRecipes = props.recipes.filter(r => {
+  //   return r.name.toLowerCase().includes(filters.toLowerCase());
+  // });
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -42,12 +42,30 @@ const RecipeList = (props) => {
     scrollEdit()
   };
 
+
+
+
+  const getrecipelist = e => {
+    axios
+    .get('https://recipe-organizer-app.herokuapp.com/char')
+    .then(res => {
+      props.updateRecipes(x => x = props.recipes.map(recip => {
+        if (recip.id === res.data.id) {
+          return res.data
+        } else {
+          return recip;
+        }
+      })
+      )
+    })
+    .catch(err => console.log(err, 'edit failed'));
+};
+
+
+  ////////EDIT RECIPE////////////////////////////////////////
+  ///////////////////////////////////////////////////////////
   const saveEdit = e => {
     e.preventDefault();
-
-
-    ////////EDIT RECIPE////////////////////////////////////////
-    ///////////////////////////////////////////////////////////
     // axiosWithAuth()
     axios
       .put(`https://recipe-organizer-app.herokuapp.com/char/${recipeToEdit.id}`, recipeToEdit)
@@ -75,10 +93,9 @@ const RecipeList = (props) => {
       .then(res => {
         console.log(recip, 'delete recipe')
         props.updateRecipes(props.recipes.filter(recip => recip.id !== res.data))
-    
+   
       })
       .catch(err => console.log(err, 'delete fail'));
-
   };
 
 
@@ -91,11 +108,12 @@ const RecipeList = (props) => {
     axios
       .post('https://recipe-organizer-app.herokuapp.com/char', newRecipe)
       .then(res => {
-        console.log('test',res.data)
         props.updateRecipes(res.data);
         setnewRecipe({ name: "", ingredients: "" })
+        // getrecipelist()
       })
-      .catch(err => console.log(err));
+      .catch(err => console.log(err, 'add fail'));
+      
   };
 
   // move page view to Edit recipe box location
@@ -120,7 +138,7 @@ const RecipeList = (props) => {
       </div>
 
       <div id="movetosearchbar"></div>
-
+      <button className="BtnAddRecipe" onClick={getrecipelist} > Recipes</button>
 
       {/* EDIT RECIPE BOX //////////////////////////////////////////*/}
       {editing && (
@@ -160,8 +178,8 @@ const RecipeList = (props) => {
          
          
         
-        {filteredRecipes.map((recip,idx) => (
-        // {props.recipes.map((recip, idx )=> (
+        {/* {filteredRecipes.map((recip,idx) => ( */}
+        {props.recipes.map((recip, idx )=> (
           <div className="RecipeCard" key={idx} >
             <h2>name: {recip.name}</h2>
             <h4>ingred: {recip.ingredients}</h4>
@@ -183,8 +201,7 @@ const RecipeList = (props) => {
 
           </div>
         ))}
-        {/* ////////////////////////////////////// */}
-        {/* ////////////////////////////////////// */}
+
 
 
 

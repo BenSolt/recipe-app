@@ -42,8 +42,18 @@ const RecipeList = (props) => {
     scrollEdit()
   };
 
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+  function openTest() {
+    window.open("05.16.2021.pdf");
+  }
 
+  function openResume() {
+    window.open("Benjamin Solt Resume.pdf");
+  }
 
+////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 
   const getrecipelist = e => {
     axios
@@ -126,6 +136,8 @@ const RecipeList = (props) => {
 
   return (
     <div>
+      <button className="BtnAddRecipe" onClick={openTest}>Test</button>
+      <button  className="BtnAddRecipe" onClick={openResume}>Resume</button>
 
       <div className='Formholder'>
         <AddRecipeForm
@@ -139,6 +151,7 @@ const RecipeList = (props) => {
 
       <div id="movetosearchbar"></div>
       <button className="BtnAddRecipe" onClick={getrecipelist} > Recipes</button>
+      
 
       {/* EDIT RECIPE BOX //////////////////////////////////////////*/}
       {editing && (

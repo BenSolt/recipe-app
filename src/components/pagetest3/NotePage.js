@@ -42,12 +42,12 @@ function PageHome() {
         <NoteSearch filter={filter} onFilterChangeNote1={handleFilterChangeNote} />
 
         <Notes notesList={notes} />
-        {filteredRecipes.map(recip => (
+        {/* {filteredRecipes.map(recip => (
           <div className="note" key={recip.id} >
             <h2>{recip.name}</h2>
             <h4>{recip.body}</h4>
           </div>
-        ))}  
+        ))}   */}
       </div>
    
     </div>

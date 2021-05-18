@@ -16,6 +16,28 @@ background: blue;
     /* background: rgb(0, 89, 172); */
 }
 
+.BtnInfo{
+    width: 100px;
+    padding: 5px;
+    background: rgb(0, 162, 255);
+    font-weight: bold;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    color: black;
+}
+
+
+.BtnInfo:hover{
+    width: 100px;
+    padding: 5px;
+    background: rgb(0, 111, 175);
+    font-weight: bold;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    color: black;
+}
+
+
 /* .btn-link{
 color: black;
 font-weight: bold;

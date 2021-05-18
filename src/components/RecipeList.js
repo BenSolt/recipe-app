@@ -20,12 +20,13 @@ const RecipeList = (props) => {
 
   const [filters, setFilters] = useState("");
 
+
   
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 // THIS IS Throwing an error - when trying to add recipe. "cannot read property 'toLowerCase' of undefined"
 
-  // const filteredRecipes = recipes.filter(r => {
+  // const filteredRecipes = props.recipes.filter(r => {
   //   return r.name.toLowerCase().includes(filters.toLowerCase());
   // });
 
@@ -89,14 +90,13 @@ const RecipeList = (props) => {
     // axiosWithAuth()
     console.log('add recipe')
     axios
-      .post('https://recipe-organizer-app.herokuapp.com/char', newRecipe)
+      .post('https://recipe-organizer-app.herokuapp.com/char/', newRecipe)
       .then(res => {
-        console.log(res)
+        console.log(res.data, 'added recipe')
         props.updateRecipes(res.data);
         setnewRecipe({ name: "", ingredients: "" })
       })
-      .catch(err => console.log(err, 'add fail'));
-      
+      .catch(err => console.log(err, 'add fail'));      
   };
 
   // move page view to Edit recipe box location
@@ -159,14 +159,30 @@ const RecipeList = (props) => {
 
         {/* //////////////RECIPE CARD//////////////////////////// */}
         {/* //////////////////////////////////////////////////// */}
-         
-         
+
         
         {/* {filteredRecipes.map((recip,idx) => ( */}
         {props.recipes.map((recip, idx )=> (
           <div className="RecipeCard" key={idx} >
             <h2>{recip.name}</h2>
-            <h4>{recip.ingredients}</h4>
+            {/* <h4>{recip.ingredients}</h4> */}
+
+            <Accordion >
+              <Card>
+                <Card.Header>
+                  <Accordion.Toggle as={Button}  eventKey={recip.id} className="BtnInfo" >
+                    Info
+            </Accordion.Toggle>
+                </Card.Header>
+                <Accordion.Collapse eventKey={recip.id}>
+                  <Card.Body>
+                    <h4>{recip.ingredients}</h4>
+                   
+
+                  </Card.Body>
+                </Accordion.Collapse>
+              </Card>
+            </Accordion>
 
 
             <button className="BtnEditRecipe" onClick={() =>
@@ -185,52 +201,6 @@ const RecipeList = (props) => {
 
           </div>
         ))}
-
-
-
-
-        {/* {recipes.map(recip => (
-          <div className="RecipeCard" key={recip.id} >
-            <h2>{recip.name}</h2>
-            <div className="BtnHolder">
-              <button className="BtnDeleteRecipe" onClick={e => {
-                e.stopPropagation();
-                deleteRecipe(recip)
-              }}>
-                Delete Recipe
-                </button>
-
-              <button className="BtnEditRecipe" onClick={() => editRecipe(recip)}>Edit Recipe</button>
-
-            </div>
-
-            <Accordion >
-              <Card>
-                <Card.Header>
-                  <Accordion.Toggle as={Button}  eventKey={recip.id} className="BtnEditRecipe" >
-                    Edit Recipe
-            </Accordion.Toggle>
-                </Card.Header>
-                <Accordion.Collapse eventKey={recip.id}>
-                  <Card.Body>
-
-                    <input
-                    className="Input"
-                    placeholder="Recipe Name"
-                    onChange={e =>
-                      setRecipeToEdit({ ...recipeToEdit, name: e.target.value })
-                    }
-                    // value={recipeToEdit.name}
-                    value={recip.name}
-                    />
-
-                  </Card.Body>
-                </Accordion.Collapse>
-              </Card>
-            </Accordion>
-
-          </div>
-        ))} */}
 
       </div>
 

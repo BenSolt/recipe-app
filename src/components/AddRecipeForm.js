@@ -6,6 +6,7 @@ function AddRecipeForm(props) {
     <div>
       {/* props called from RECIPELIST */}
       <form onSubmit={props.addRecipe1} className='formholder' >
+      {/* Need to then call recipes list... */}
         <input
           className="Input"
           type="text"
@@ -28,7 +29,6 @@ function AddRecipeForm(props) {
         <button className="BtnAddRecipe" >Add Recipe</button>
       </form>
 
-      
     </div>
   );
 }

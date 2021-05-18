@@ -9,6 +9,7 @@ import Navbar from "./components/Navbar";
 import RecipePage from "./components/RecipePage";
 
 import { Accordion } from 'react-bootstrap';
+// import BubblePage from './components/BubblePage';
 // import NotePage from './components/pagetest3/NotePage';
 
 function App() {

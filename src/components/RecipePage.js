@@ -11,13 +11,16 @@ const RecipePage = () => {
   const [recipeList, setRecipeList] = useState([]);
   // const [query, setQuery] = useState("");
 
+
+
   useEffect(() => {
     axios
   // axiosWithAuth()
     .get('https://recipe-organizer-app.herokuapp.com/char')
     // .get('https//:localhost:3000/char')
     .then(res => {
-        setRecipeList(res.data)
+      console.log(res.data)
+      setRecipeList(res.data)
     })
     .catch(err => {
       console.log(err)

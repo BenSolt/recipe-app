@@ -8,7 +8,7 @@ const SearchRecipeForm = (props) => {
             <input 
             className="Input2"
             type="text"
-            value={props.filter}
+            value={props.filter1}
             onChange={props.onFilterChange}
             name="name"
             placeholder="Search Recipe"

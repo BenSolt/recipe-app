@@ -15,6 +15,7 @@ const RecipePage = () => {
     axios
   // axiosWithAuth()
     .get('https://recipe-organizer-app.herokuapp.com/char')
+    // .get('https//:localhost:3000/char')
     .then(res => {
         setRecipeList(res.data)
     })
@@ -29,10 +30,10 @@ const RecipePage = () => {
   return (
     <div>
 
-      <RecipeList 
-      recipes={recipeList}
-      updateRecipes={setRecipeList}
-      />
+      <RecipeList
+       recipes={recipeList}
+       updateRecipes={setRecipeList}
+       />
 
     </div>
   );

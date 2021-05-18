@@ -5,8 +5,7 @@ function AddRecipeForm(props) {
   return (
     <div>
       {/* props called from RECIPELIST */}
-      <form onSubmit={props.addRecipe1}>
-      {/* <form onSubmit={()=>props.addRecipe1()}> */}
+      <form onSubmit={props.addRecipe1} className='formholder' >
         <input
           className="Input"
           type="text"

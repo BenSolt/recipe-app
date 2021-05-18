@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Accordion, Card, Button } from 'react-bootstrap'
 // import axiosWithAuth from '../utils/AxiosWithAuth';
@@ -13,18 +13,19 @@ const initialRecipe = {
 
 const RecipeList = (props) => {
 
-  console.log(props.recipes);
+ 
   const [editing, setEditing] = useState(false);
   const [recipeToEdit, setRecipeToEdit] = useState(initialRecipe);
   const [newRecipe, setnewRecipe] = useState({ name: "", ingredients: "" })
 
   const [filters, setFilters] = useState("");
+
   
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 // THIS IS Throwing an error - when trying to add recipe. "cannot read property 'toLowerCase' of undefined"
 
-  // const filteredRecipes = props.recipes.filter(r => {
+  // const filteredRecipes = recipes.filter(r => {
   //   return r.name.toLowerCase().includes(filters.toLowerCase());
   // });
 
@@ -42,22 +43,6 @@ const RecipeList = (props) => {
     scrollEdit()
   };
 
-
-  const getrecipelist = e => {
-    axios
-    .get('https://recipe-organizer-app.herokuapp.com/char')
-    .then(res => {
-      props.updateRecipes(x => x = props.recipes.map(recip => {
-        if (recip.id === res.data.id) {
-          return res.data
-        } else {
-          return recip;
-        }
-      })
-      )
-    })
-    .catch(err => console.log(err, 'edit failed'));
-};
 
 
   ////////EDIT RECIPE////////////////////////////////////////
@@ -106,9 +91,9 @@ const RecipeList = (props) => {
     axios
       .post('https://recipe-organizer-app.herokuapp.com/char', newRecipe)
       .then(res => {
+        console.log(res)
         props.updateRecipes(res.data);
         setnewRecipe({ name: "", ingredients: "" })
-        // getrecipelist()
       })
       .catch(err => console.log(err, 'add fail'));
       
@@ -132,11 +117,11 @@ const RecipeList = (props) => {
           ingredient1={newRecipe.ingredients}
           onChange1={e => setnewRecipe({ ...newRecipe, [e.target.name]: e.target.value })} />
 
-        <SearchRecipeForm filter={filters} onFilterChange={handleFilterChange} />
+        <SearchRecipeForm filter1={filters} onFilterChange={handleFilterChange} />
       </div>
 
       <div id="movetosearchbar"></div>
-      <button className="BtnAddRecipe" onClick={getrecipelist} > Recipes</button>
+    
       
 
       {/* EDIT RECIPE BOX //////////////////////////////////////////*/}
@@ -180,8 +165,8 @@ const RecipeList = (props) => {
         {/* {filteredRecipes.map((recip,idx) => ( */}
         {props.recipes.map((recip, idx )=> (
           <div className="RecipeCard" key={idx} >
-            <h2>name: {recip.name}</h2>
-            <h4>ingred: {recip.ingredients}</h4>
+            <h2>{recip.name}</h2>
+            <h4>{recip.ingredients}</h4>
 
 
             <button className="BtnEditRecipe" onClick={() =>
@@ -204,7 +189,7 @@ const RecipeList = (props) => {
 
 
 
-        {/* {props.recipes.map(recip => (
+        {/* {recipes.map(recip => (
           <div className="RecipeCard" key={recip.id} >
             <h2>{recip.name}</h2>
             <div className="BtnHolder">

@@ -123,7 +123,8 @@ const FileUpload = () => {
           {uploadedFile ? (
             <div>
               <h4>{uploadedFile.fileName}</h4>
-              <img className="ImageSize" src={`http://localhost:3001${uploadedFile.filePath}`} alt='' />
+              {/* <img className="ImageSize" src={`http://localhost:3001${uploadedFile.filePath}`} alt='' /> */}
+              <img className="ImageSize" src={`https://recipe-organizer-app.herokuapp.com${uploadedFile.filePath}`} alt='' />
             </div>
           ) : <div></div>}
         </div>

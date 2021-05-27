@@ -12,7 +12,7 @@ import RecipePage from "./components/RecipePage";
 // import { Accordion } from 'react-bootstrap';
 import OpticalReader from "./components/OpticalReader";
 
-import FileUpload from "./components/FileUpload";
+// import FileUpload from "./components/FileUpload";
 
 // import NotePage from './components/pagetest3/NotePage';
 
@@ -26,7 +26,7 @@ function App() {
       <RecipePage/>
 
       <OpticalReader/>
-      <FileUpload/>
+      {/* <FileUpload/> */}
       
   
       {/* <NotePage/> */}

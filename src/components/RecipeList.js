@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { Accordion, Card, Button } from 'react-bootstrap'
 // import axiosWithAuth from '../utils/AxiosWithAuth';
@@ -63,6 +63,7 @@ const RecipeList = (props) => {
           }
         })
         )
+        window.location.reload();
       })
       .catch(err => console.log(err, 'edit failed'));
   };
@@ -77,7 +78,7 @@ const RecipeList = (props) => {
       .then(res => {
         console.log(recip, 'delete recipe')
         props.updateRecipes(props.recipes.filter(recip => recip.id !== res.data))
-   
+        window.location.reload();
       })
       .catch(err => console.log(err, 'delete fail'));
   };
@@ -93,8 +94,11 @@ const RecipeList = (props) => {
       .post('https://recipe-organizer-app.herokuapp.com/char/', newRecipe)
       .then(res => {
         console.log(res.data, 'added recipe')
-        props.updateRecipes(res.data);
+        props.updateRecipes(props.recipes);
         setnewRecipe({ name: "", ingredients: "" })
+        // works..but refreshes page.. there is a way to do it without reload page..
+        window.location.reload();
+    
       })
       .catch(err => console.log(err, 'add fail'));      
   };
@@ -116,7 +120,6 @@ const RecipeList = (props) => {
           name1={newRecipe.name}
           ingredient1={newRecipe.ingredients}
           onChange1={e => setnewRecipe({ ...newRecipe, [e.target.name]: e.target.value })} />
-
         <SearchRecipeForm filter1={filters} onFilterChange={handleFilterChange} />
       </div>
 

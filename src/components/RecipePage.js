@@ -11,7 +11,9 @@ const RecipePage = () => {
   const [recipeList, setRecipeList] = useState([]);
   // const [query, setQuery] = useState("");
 
-
+  // const addNewNote = note => {
+  //   setRecipeList([...recipeList, note]);
+  // };
 
   useEffect(() => {
     axios

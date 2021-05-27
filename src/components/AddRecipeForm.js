@@ -1,11 +1,12 @@
 import React from "react";
 
+
 function AddRecipeForm(props) {
 
   return (
     <div>
       {/* props called from RECIPELIST */}
-      <form onSubmit={props.addRecipe1} className='formholder' >
+      <form onSubmit={props.addRecipe1} className='formholder'>
       {/* Need to then call recipes list... */}
         <input
           className="Input"

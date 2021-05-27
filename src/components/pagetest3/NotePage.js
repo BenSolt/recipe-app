@@ -37,7 +37,8 @@ function PageHome() {
     <div className="NoteApp">
       <h1>My Notes</h1>
       <div className="test">
-        <NoteForm addNewNote={addNewNote} />
+        <NoteForm addNewNote1={addNewNote} />
+        {/* <NoteForm /> */}
 
         <NoteSearch filter={filter} onFilterChangeNote1={handleFilterChangeNote} />
 

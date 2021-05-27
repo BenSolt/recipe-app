@@ -57,14 +57,6 @@
 }
 
 
-.Input2{
-    padding: 5px;
-    margin: 0 0 0 4%;
-    border: 2px solid black;
-    font-size: 1rem;
-    border-radius: 5px;   
-}
-
 /* END FORM ////////////////////////////////////////////*/
 
 
@@ -118,7 +110,7 @@
     margin: 12px 5px; 
     background: rgb(255, 0, 0);
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1rem;
     border-radius: 5px;
 }
 
@@ -127,7 +119,7 @@
     padding: 5px;
     background: rgb(200, 0, 0);
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1rem;
     border-radius: 5px;
     color: white;
 }
@@ -150,7 +142,7 @@
     margin: 0px 5px; 
     background: rgb(0, 162, 255);
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1rem;
     border-radius: 5px;
 }
 
@@ -159,7 +151,7 @@
     padding: 5px;
     background: rgb(0, 162, 255);
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1rem;
     border-radius: 5px;
     color: white;
 }
@@ -186,3 +178,57 @@
     border: 2px solid black;
     margin: 0 12% 0% 12%;
 }
+
+/* ///////////////////////////////////////////////////// */
+
+.FileUploadPage{
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* border: 2px solid black; */
+  }
+  
+  .SectionTop{
+    width: 500px;
+    /* border: 2px solid blue; */
+  }
+  
+  
+  /* HOLDS IMAGE AND CONVERTED IMAGE */
+  .SectionBottom{
+    display: flex;
+    justify-content: center;
+  }
+  
+  .SectionA{
+    width: 40%;
+    /* border: 2px solid red; */
+  }
+  
+  
+  .SectionB{
+    width: 40%;
+    /* border: 2px solid green; */
+  }
+  
+  
+  /* IMAGE */
+  .ImageSize{
+    width: 80%;
+  }
+  
+  .ImageSize2{
+    height: 400px;
+  }
+  
+  /* CONVERTED IMAGE */
+  .ConvertedImage{
+    width: 100%;
+  }
+  
+  .fileUploadFiles{
+    /* border: 2px solid black; */
+    width: 620px;
+    display: flex;
+  }

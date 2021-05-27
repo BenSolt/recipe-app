@@ -4,9 +4,9 @@ const SearchRecipeForm = (props) => {
 
   return (
     <div>
-        <form>
+        <form >
             <input 
-            className="Input2"
+            className="Input"
             type="text"
             value={props.filter1}
             onChange={props.onFilterChange}

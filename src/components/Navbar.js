@@ -5,10 +5,6 @@ import React from "react";
 
 function Navbar() {
 
-  function scrollArt() {
-    var elmnt = document.getElementById("contentArt");
-    elmnt.scrollIntoView();
-  }
 
   return (
 

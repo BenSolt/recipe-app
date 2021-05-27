@@ -19,7 +19,7 @@ const FileUpload = () => {
   const [ocrText, setOcrText] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-
+//
   const onChange = e => {
     setFile(e.target.files[0]);
     setFilename(e.target.files[0].name);

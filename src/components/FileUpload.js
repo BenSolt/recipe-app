@@ -29,6 +29,7 @@ const FileUpload = () => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('file', file);
+    console.log("FILE:",file)
 
     try {
       const res = await axios.post(' https://recipe-organizer-app.herokuapp.com/upload', formData, {
@@ -49,7 +50,7 @@ const FileUpload = () => {
       setTimeout(() => setUploadPercentage(0), 5000);
 
       const { fileName, filePath } = res.data;
-      console.log(filePath)
+      console.log("FILEPATH:",filePath)
 
       setUploadedFile({ fileName, filePath });
 
@@ -124,8 +125,8 @@ const FileUpload = () => {
             <div>
               <h4>{uploadedFile.fileName}</h4>
               <h4>PATH:{uploadedFile.filePath}</h4>
-              {/* <img className="ImageSize" src={`http://localhost:3001${uploadedFile.filePath}`} alt='' /> */}
-              <img className="ImageSize" src={`https://recipe-organizer-app.herokuapp.com/${uploadedFile.filePath}`} alt='' />
+              {/* <img className="ImageSize" src={`http://localhost:3000${uploadedFile.filePath}`} alt='' /> */}
+              <img className="ImageSize" src={`https://recipe-organizer-app.herokuapp.com/${uploadedFile.filePath}`} alt='upload image' />
             </div>
           ) : <div></div>}
         </div>

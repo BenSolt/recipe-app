@@ -3,17 +3,8 @@ import axios from "axios";
 
 import RecipeList from "./RecipeList";
 
-// import RecipeList_Edit from "./RecipeList_Edit";
-
-// import axiosWithAuth from '../utils/AxiosWithAuth';
-
 const RecipePage = () => {
   const [recipeList, setRecipeList] = useState([]);
-  // const [query, setQuery] = useState("");
-
-  // const addNewNote = note => {
-  //   setRecipeList([...recipeList, note]);
-  // };
 
   useEffect(() => {
     axios

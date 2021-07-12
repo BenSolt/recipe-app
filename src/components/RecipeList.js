@@ -180,8 +180,6 @@ const RecipeList = (props) => {
                 <Accordion.Collapse eventKey={recip.id}>
                   <Card.Body>
                     <h4>{recip.ingredients}</h4>
-                   
-
                   </Card.Body>
                 </Accordion.Collapse>
               </Card>

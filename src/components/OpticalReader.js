@@ -33,7 +33,6 @@ const OppticalReader = (props) => {
             <form action='/upload' method="POST" encType="multipart/form-data">
                 <input type='file' name="" className="text" />
                 <button type="submit">Submit</button>
-                {/* <button onClick={addImage}>Add Image</button> */}
             </form>
 
         </div>

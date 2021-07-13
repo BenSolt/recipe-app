@@ -33,7 +33,6 @@ const FileUpload = () => {
 
     try {
       const res = await axios.post(' https://recipe-organizer-app.herokuapp.com/upload', formData, {
-      //const res = await axios.post('/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         },
